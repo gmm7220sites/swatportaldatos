@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal SWAT RRHH</title>
-    <!-- Favicon (Icono de la página) -->
-    <link rel="icon" type="image/png" href="logoswat.png">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logoswat_2.png">
     
     <!-- Tailwind CSS para diseño moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -94,34 +94,23 @@
 
     <!-- Modal Escáner de DNI Integrado -->
     <div id="dni-scanner-modal" class="hidden-view fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center animate-fade-in print:hidden">
-        <!-- Barra superior -->
         <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 bg-gradient-to-b from-black/90 to-transparent">
             <h3 class="text-white font-bold flex items-center gap-2"><i data-lucide="scan" class="w-5 h-5"></i> Escáner de DNI</h3>
             <button onclick="closeDniScanner()" class="text-white p-2 hover:bg-white/20 rounded-full transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
         </div>
-
-        <!-- Visor de Cámara y Máscara -->
         <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
             <video id="dni-video-feed" autoplay playsinline class="absolute w-full h-full object-cover"></video>
-
-            <!-- Overlay (Máscara oscura + Marco transparente) -->
             <div class="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
                 <div id="dni-guide-frame" class="w-[90%] max-w-[420px] aspect-[1.58/1] border-2 border-brand-500 rounded-xl shadow-[0_0_0_4000px_rgba(0,0,0,0.65)] relative flex items-center justify-center">
                     <div class="absolute -top-10 left-0 w-full text-center text-white text-sm font-bold animate-pulse">Alinee su DNI dentro de este marco</div>
-                    
-                    <!-- Esquinas de mira -->
                     <div class="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-white rounded-tl-lg"></div>
                     <div class="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-white rounded-tr-lg"></div>
                     <div class="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-white rounded-bl-lg"></div>
                     <div class="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-white rounded-br-lg"></div>
-                    
-                    <!-- Láser animado -->
                     <div class="w-full h-[2px] bg-brand-400 shadow-[0_0_8px_2px_rgba(239,68,68,0.6)] animate-scan-laser absolute"></div>
                 </div>
             </div>
         </div>
-
-        <!-- Controles Inferiores -->
         <div class="absolute bottom-0 w-full p-8 flex flex-col items-center justify-center z-20 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
             <button onclick="captureDniFrame()" class="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center active:scale-90 transition-transform mb-2">
                 <div class="w-16 h-16 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
@@ -132,28 +121,19 @@
 
     <!-- Modal Escáner de Selfie Integrado -->
     <div id="selfie-scanner-modal" class="hidden-view fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center animate-fade-in print:hidden">
-        <!-- Barra superior -->
         <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 bg-gradient-to-b from-black/90 to-transparent">
             <h3 class="text-white font-bold flex items-center gap-2"><i data-lucide="user-focus" class="w-5 h-5"></i> Escáner Facial</h3>
             <button onclick="closeSelfieScanner()" class="text-white p-2 hover:bg-white/20 rounded-full transition-colors"><i data-lucide="x" class="w-6 h-6"></i></button>
         </div>
-
-        <!-- Visor de Cámara y Máscara -->
         <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
-            <!-- Video en modo espejo (escala X a -1) -->
             <video id="selfie-video-feed" autoplay playsinline class="absolute w-full h-full object-cover" style="transform: scaleX(-1);"></video>
-
-            <!-- Overlay (Máscara oscura + Marco circular transparente) -->
             <div class="absolute inset-0 z-10 pointer-events-none flex items-center justify-center">
                 <div id="selfie-guide-frame" class="w-[80%] max-w-[320px] aspect-square border-2 border-brand-500 rounded-full shadow-[0_0_0_4000px_rgba(0,0,0,0.65)] relative flex items-center justify-center overflow-hidden">
                     <div class="absolute -top-12 left-0 w-full text-center text-white text-sm font-bold animate-pulse">Ubique su rostro aquí</div>
-                    <!-- Láser animado -->
                     <div class="w-full h-[2px] bg-brand-400 shadow-[0_0_8px_2px_rgba(239,68,68,0.6)] animate-scan-laser absolute"></div>
                 </div>
             </div>
         </div>
-
-        <!-- Controles Inferiores -->
         <div class="absolute bottom-0 w-full p-8 flex flex-col items-center justify-center z-20 bg-gradient-to-t from-black/90 via-black/60 to-transparent">
             <button onclick="captureSelfieFrame()" class="w-20 h-20 rounded-full border-4 border-white flex items-center justify-center active:scale-90 transition-transform mb-2">
                 <div class="w-16 h-16 bg-white rounded-full shadow-[0_0_15px_rgba(255,255,255,0.8)]"></div>
@@ -165,22 +145,17 @@
     <!-- Modal Verificación Teléfono -->
     <div id="phone-modal" class="hidden-view fixed inset-0 z-[9999] bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
         <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 text-center animate-slide-up">
-            <div class="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center text-brand-900 mx-auto mb-4">
-                <i data-lucide="smartphone" class="w-8 h-8"></i>
-            </div>
+            <div class="w-16 h-16 bg-brand-100 rounded-full flex items-center justify-center text-brand-900 mx-auto mb-4"><i data-lucide="smartphone" class="w-8 h-8"></i></div>
             <h3 class="text-xl font-bold text-slate-800 mb-2">Verificar Celular</h3>
             <p class="text-slate-500 text-sm mb-6">Hemos "enviado" un código de prueba de 4 dígitos a su número para confirmar su validez.</p>
-            
             <div class="mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
                 <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">CÓDIGO DE PRUEBA</p>
                 <p id="demo-sms-code" class="text-3xl font-mono font-bold text-slate-800 tracking-widest">1234</p>
             </div>
-
             <div class="flex flex-col gap-2">
                 <input type="text" id="verify-code-input" maxlength="4" placeholder="Ingrese el código aquí" class="text-center text-2xl tracking-widest font-mono p-3 border-2 border-slate-200 rounded-xl focus:border-brand-500 outline-none">
                 <p id="verify-error" class="text-red-500 text-sm font-medium hidden-view mt-1">Código incorrecto</p>
             </div>
-
             <div class="flex gap-3 mt-6">
                 <button onclick="closePhoneModal()" class="flex-1 py-3 font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors">Cancelar</button>
                 <button onclick="confirmPhoneVerification()" class="flex-1 py-3 font-semibold text-white bg-brand-900 hover:bg-brand-800 rounded-xl shadow-lg shadow-brand-200 transition-all">Verificar</button>
@@ -198,9 +173,7 @@
     <!-- VISTA 1: LOGIN -->
     <div id="login-view" class="hidden-view min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-100 to-slate-200">
         <div class="max-w-md w-full bg-white rounded-[2rem] shadow-2xl p-8 border border-white animate-slide-up flex flex-col items-center">
-            
             <img src="logoswat.png" alt="Logo SWAT" class="h-32 w-auto object-contain mb-2 drop-shadow-md">
-            
             <h1 class="text-2xl font-black text-center text-brand-900 tracking-wide uppercase mb-1">Portal de Personal</h1>
             <p class="text-center text-slate-500 mb-8 font-medium">Recursos Humanos y Capacitación</p>
             
@@ -215,10 +188,7 @@
                     <i data-lucide="log-in" class="w-5 h-5"></i> Ingresar al Portal
                 </button>
             </form>
-
-            <div class="mt-8 pt-6 border-t border-slate-100 text-center text-xs text-slate-400 font-medium w-full">
-                <p>Uso exclusivo para personal SWAT Servicio de Protección</p>
-            </div>
+            <div class="mt-8 pt-6 border-t border-slate-100 text-center text-xs text-slate-400 font-medium w-full"><p>Uso exclusivo para personal SWAT Servicio de Protección</p></div>
         </div>
     </div>
 
@@ -243,14 +213,12 @@
                 <section class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200">
                     <h3 class="text-lg font-bold text-brand-900 mb-6 flex items-center gap-2"><i data-lucide="camera" class="text-brand-600"></i> Identidad Visual</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Selfie -->
                         <div class="flex flex-col items-center">
                             <label class="form-label text-center mb-3">Foto de Perfil (Selfie) *</label>
                             <div id="profile-upload-btn" class="w-48 h-48 border-2 border-dashed border-brand-300 bg-brand-50/50 rounded-full flex flex-col items-center justify-center hover:bg-brand-50 transition-colors cursor-pointer group" onclick="openSelfieScanner()">
                                 <div class="bg-white p-3 rounded-full shadow-sm mb-2 group-hover:scale-110 transition-transform"><i data-lucide="user-plus" class="w-8 h-8 text-brand-600"></i></div>
                                 <span class="text-xs font-semibold text-brand-800 text-center px-4">Toca para tomar foto</span>
                             </div>
-                            <!-- Input fallback oculto -->
                             <input type="file" id="reg_profile_foto" accept="image/*" capture="user" class="hidden" onchange="handlePhotoUpload(event, 'profile')">
                             <div id="profile-preview-container" class="hidden-view relative w-48 h-48">
                                 <img id="profile-preview" class="w-full h-full object-cover rounded-full shadow-lg border-4 border-white ring-4 ring-brand-100">
@@ -258,16 +226,13 @@
                             </div>
                         </div>
 
-                        <!-- Escáner Inteligente DNI -->
                         <div class="flex flex-col items-center">
                             <label class="form-label text-center mb-3">Foto del DNI (Frente) *</label>
                             <div id="dni-upload-btn" class="w-full max-w-[280px] h-48 border-2 border-dashed border-brand-300 bg-brand-50/50 rounded-2xl flex flex-col items-center justify-center hover:bg-brand-100 transition-colors cursor-pointer group" onclick="openDniScanner()">
                                 <div class="bg-white p-3 rounded-full shadow-sm mb-2 group-hover:scale-110 transition-transform text-brand-600"><i data-lucide="scan-line" class="w-8 h-8"></i></div>
                                 <span class="text-xs font-bold text-brand-800 text-center px-4">Escanear DNI</span>
                             </div>
-                            <!-- Input fallback oculto -->
                             <input type="file" id="reg_dni_foto" accept="image/*" capture="environment" class="hidden" onchange="handlePhotoUpload(event, 'dni')">
-                            
                             <div id="dni-preview-container" class="hidden-view relative w-full max-w-[280px] h-48">
                                 <img id="dni-preview" class="w-full h-full object-cover rounded-2xl shadow-lg border-4 border-white">
                                 <button type="button" onclick="removePhoto('dni')" class="absolute -top-3 -right-3 bg-red-600 text-white p-2 rounded-full shadow-lg hover:bg-red-700 border-2 border-white transition-transform hover:scale-105"><i data-lucide="x" class="w-4 h-4"></i></button>
@@ -332,7 +297,6 @@
                     </div>
                 </section>
 
-                <!-- OTRAS SECCIONES (Emergencia, Cónyuge, Hijos, Consentimiento) -->
                 <section class="bg-white p-6 md:p-8 rounded-3xl shadow-sm border border-slate-200 border-l-4 border-l-brand-600">
                     <h3 class="text-lg font-bold text-brand-900 mb-4 flex items-center gap-2"><i data-lucide="heart-pulse" class="text-brand-600"></i> II. Contacto de Emergencia</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -380,7 +344,6 @@
     <!-- VISTA 3: PERFIL DE TRABAJADOR Y PLATAFORMA LMS -->
     <div id="profile-view" class="hidden-view min-h-screen p-4 md:p-8 bg-slate-100">
         <div class="max-w-5xl mx-auto space-y-6">
-            <!-- Header Card -->
             <div class="bg-white rounded-[2rem] shadow-sm p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6 border border-slate-200 relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-brand-50 rounded-full blur-3xl -z-10 -mr-20 -mt-20"></div>
                 <div class="flex flex-col md:flex-row items-center gap-6 text-center md:text-left z-10">
@@ -399,7 +362,6 @@
                 </div>
             </div>
 
-            <!-- Dashboard Grid -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Columna Izquierda: Datos -->
                 <div class="lg:col-span-1 space-y-6">
@@ -417,25 +379,18 @@
                     </div>
                 </div>
 
-                <!-- Columna Derecha: LMS (Insignias y Cursos) -->
+                <!-- Columna Derecha: LMS -->
                 <div class="lg:col-span-2 space-y-6">
-                    
                     <!-- Vitrina de Insignias -->
                     <div class="bg-gradient-to-br from-yellow-50 to-amber-100 rounded-3xl shadow-sm p-6 md:p-8 border border-yellow-200">
                         <h3 class="text-lg font-black text-amber-900 mb-6 flex items-center gap-2"><i data-lucide="award" class="text-amber-600"></i> Vitrina de Insignias y Logros</h3>
-                        <div id="badges-container" class="flex flex-wrap gap-4 min-h-[80px] items-center">
-                            <!-- Llenado vía JS -->
-                        </div>
+                        <div id="badges-container" class="flex flex-wrap gap-4 min-h-[80px] items-center"></div>
                     </div>
-
                     <!-- Lista de Cursos -->
                     <div class="bg-white rounded-3xl shadow-sm p-6 md:p-8 border border-slate-200">
                         <h3 class="text-lg font-bold text-brand-900 mb-6 flex items-center gap-2"><i data-lucide="book-open" class="text-brand-600"></i> Capacitaciones Disponibles</h3>
-                        <div id="courses-container" class="space-y-4">
-                            <!-- Llenado vía JS -->
-                        </div>
+                        <div id="courses-container" class="space-y-4"></div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -452,9 +407,7 @@
                 </div>
             </div>
             
-            <div id="quiz-questions-container" class="space-y-6">
-                <!-- Preguntas se insertan vía JS -->
-            </div>
+            <div id="quiz-questions-container" class="space-y-6"></div>
 
             <div class="mt-10 pt-6 border-t flex flex-col sm:flex-row justify-end gap-4">
                 <button onclick="showView('profile-view')" class="px-6 py-3 text-slate-600 font-bold bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors">Cancelar / Salir</button>
@@ -471,13 +424,8 @@
             <!-- Admin Header -->
             <div class="bg-brand-900 rounded-[2rem] p-6 md:p-8 text-white flex flex-col md:flex-row justify-between items-center shadow-xl mb-6 gap-4">
                 <div class="flex items-center gap-4">
-                    <div class="bg-white p-2 rounded-2xl h-16 w-16 flex items-center justify-center">
-                        <img src="logoswat.png" alt="Logo" class="max-h-full object-contain mix-blend-multiply">
-                    </div>
-                    <div>
-                        <h2 class="text-2xl md:text-3xl font-black">Panel de Mando HR</h2>
-                        <p class="text-brand-200 font-medium mt-1">Directorio y Academia SWAT</p>
-                    </div>
+                    <div class="bg-white p-2 rounded-2xl h-16 w-16 flex items-center justify-center"><img src="logoswat.png" alt="Logo" class="max-h-full object-contain mix-blend-multiply"></div>
+                    <div><h2 class="text-2xl md:text-3xl font-black">Panel de Mando HR</h2><p class="text-brand-200 font-medium mt-1">Directorio y Academia SWAT</p></div>
                 </div>
                 <button onclick="logout()" class="bg-brand-800 hover:bg-red-600 hover:text-white text-brand-100 font-bold px-6 py-3 rounded-xl transition-all border border-brand-700 flex items-center gap-2">
                     <i data-lucide="log-out" class="w-5 h-5"></i> Cerrar Panel
@@ -490,11 +438,13 @@
                     <i data-lucide="users" class="w-5 h-5"></i> Directorio del Personal
                 </button>
                 <button onclick="switchAdminTab('evaluaciones')" id="tab-evaluaciones" class="bg-white px-6 py-3 rounded-xl font-bold shadow-sm border-2 border-transparent text-slate-500 hover:text-slate-700 flex items-center gap-2 whitespace-nowrap transition-colors">
-                    <i data-lucide="graduation-cap" class="w-5 h-5"></i> Catálogo de Cursos y Exámenes
+                    <i data-lucide="graduation-cap" class="w-5 h-5"></i> Catálogo de Cursos
+                </button>
+                <button onclick="switchAdminTab('reportes')" id="tab-reportes" class="bg-white px-6 py-3 rounded-xl font-bold shadow-sm border-2 border-transparent text-slate-500 hover:text-slate-700 flex items-center gap-2 whitespace-nowrap transition-colors">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5"></i> Resultados y Ranking
                 </button>
             </div>
 
-            <!-- Contenedor Principal Admin -->
             <div class="bg-white rounded-[2rem] shadow-sm border border-slate-200 overflow-hidden min-h-[500px]">
                 
                 <!-- TAB 1: PERSONAL -->
@@ -509,13 +459,7 @@
                         <table class="w-full text-left border-collapse whitespace-nowrap">
                             <thead>
                                 <tr class="bg-slate-100 text-slate-500 text-xs uppercase tracking-wider font-bold">
-                                    <th class="p-4 text-center">Foto</th>
-                                    <th class="p-4">DNI</th>
-                                    <th class="p-4">Apellidos y Nombres</th>
-                                    <th class="p-4">Puesto</th>
-                                    <th class="p-4 text-center">Cursos / Insignias</th>
-                                    <th class="p-4 text-center">Ficha F.</th>
-                                    <th class="p-4 text-center">Opciones</th>
+                                    <th class="p-4 text-center">Foto</th><th class="p-4">DNI</th><th class="p-4">Apellidos y Nombres</th><th class="p-4">Puesto</th><th class="p-4 text-center">Cursos / Insignias</th><th class="p-4 text-center">Ficha F.</th><th class="p-4 text-center">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-table-body" class="divide-y divide-slate-100 text-sm font-medium text-slate-700"></tbody>
@@ -525,16 +469,10 @@
 
                 <!-- TAB 2: GESTOR DE CURSOS / EVALUACIONES -->
                 <div id="admin-tab-evaluaciones" class="hidden-view">
-                    <!-- Lista de Cursos -->
                     <div id="admin-course-list" class="block p-6">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
-                            <div>
-                                <h3 class="font-black text-slate-800 text-xl flex items-center gap-2"><i data-lucide="library" class="text-brand-600"></i> Catálogo de Cursos</h3>
-                                <p class="text-sm text-slate-500">Maneja las evaluaciones y quizzes que tu personal debe aprobar.</p>
-                            </div>
-                            <button onclick="showCourseBuilder()" class="bg-brand-900 hover:bg-brand-800 text-white px-5 py-3 rounded-xl font-bold shadow-md flex items-center gap-2 transition-all whitespace-nowrap">
-                                <i data-lucide="plus-circle" class="w-5 h-5"></i> Publicar Nuevo Examen
-                            </button>
+                            <div><h3 class="font-black text-slate-800 text-xl flex items-center gap-2"><i data-lucide="library" class="text-brand-600"></i> Catálogo de Cursos</h3><p class="text-sm text-slate-500">Maneja las evaluaciones y quizzes que tu personal debe aprobar.</p></div>
+                            <button onclick="showCourseBuilder()" class="bg-brand-900 hover:bg-brand-800 text-white px-5 py-3 rounded-xl font-bold shadow-md flex items-center gap-2 transition-all whitespace-nowrap"><i data-lucide="plus-circle" class="w-5 h-5"></i> Publicar Nuevo Examen</button>
                         </div>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="admin-courses-grid"></div>
                     </div>
@@ -543,258 +481,174 @@
                     <div id="admin-course-builder" class="hidden-view p-6 md:p-8 bg-slate-50">
                         <div class="max-w-3xl mx-auto bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
                             <div class="mb-8 border-b border-slate-100 pb-6 flex justify-between items-start">
-                                <div>
-                                    <h3 class="text-2xl font-black text-slate-800 mb-2 flex items-center gap-2"><i data-lucide="help-circle" class="text-brand-600"></i> Diseñar Examen (Quiz)</h3>
-                                    <p class="text-slate-500 font-medium">Configura la información del curso y las preguntas de opción múltiple.</p>
-                                </div>
+                                <div><h3 class="text-2xl font-black text-slate-800 mb-2 flex items-center gap-2"><i data-lucide="help-circle" class="text-brand-600"></i> Creador de Examen (Quiz)</h3><p class="text-slate-500 font-medium">Configura las preguntas de opción múltiple o respuesta manual.</p></div>
                                 <button onclick="hideCourseBuilder()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 p-2 rounded-xl transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
                             </div>
-
                             <div class="space-y-8">
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div class="md:col-span-2">
-                                        <label class="form-label mb-2">Título del Curso / Evaluación</label>
-                                        <input type="text" id="admin-quiz-title" placeholder="Ej. Examen de Inducción SST 2026" class="form-input text-lg font-bold border-2 focus:border-brand-600 py-3" />
-                                    </div>
+                                    <div class="md:col-span-2"><label class="form-label mb-2">Título de la Evaluación</label><input type="text" id="admin-quiz-title" placeholder="Ej. Examen de Inducción SST 2026" class="form-input text-lg font-bold border-2 focus:border-brand-600 py-3" /></div>
                                     <div class="md:col-span-2">
                                         <label class="form-label mb-2">Insignia a Otorgar al Aprobar</label>
                                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all">
-                                                <input type="radio" name="quiz-badge" value="shield-check" class="hidden" checked>
-                                                <div class="w-10 h-10 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2"><i data-lucide="shield-check"></i></div>
-                                                <span class="text-xs font-bold text-slate-600 block">Seguridad</span>
-                                            </label>
-                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all">
-                                                <input type="radio" name="quiz-badge" value="heart-pulse" class="hidden">
-                                                <div class="w-10 h-10 mx-auto bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-2"><i data-lucide="heart-pulse"></i></div>
-                                                <span class="text-xs font-bold text-slate-600 block">Salud</span>
-                                            </label>
-                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all">
-                                                <input type="radio" name="quiz-badge" value="briefcase" class="hidden">
-                                                <div class="w-10 h-10 mx-auto bg-slate-800 text-white rounded-full flex items-center justify-center mb-2"><i data-lucide="briefcase"></i></div>
-                                                <span class="text-xs font-bold text-slate-600 block">Gestión</span>
-                                            </label>
-                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all">
-                                                <input type="radio" name="quiz-badge" value="star" class="hidden">
-                                                <div class="w-10 h-10 mx-auto bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2"><i data-lucide="star"></i></div>
-                                                <span class="text-xs font-bold text-slate-600 block">Especialidad</span>
-                                            </label>
+                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all"><input type="radio" name="quiz-badge" value="shield-check" class="hidden" checked><div class="w-10 h-10 mx-auto bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-2"><i data-lucide="shield-check"></i></div><span class="text-xs font-bold text-slate-600 block">Seguridad</span></label>
+                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all"><input type="radio" name="quiz-badge" value="heart-pulse" class="hidden"><div class="w-10 h-10 mx-auto bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-2"><i data-lucide="heart-pulse"></i></div><span class="text-xs font-bold text-slate-600 block">Salud</span></label>
+                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all"><input type="radio" name="quiz-badge" value="briefcase" class="hidden"><div class="w-10 h-10 mx-auto bg-slate-800 text-white rounded-full flex items-center justify-center mb-2"><i data-lucide="briefcase"></i></div><span class="text-xs font-bold text-slate-600 block">Gestión</span></label>
+                                            <label class="border-2 border-slate-200 rounded-xl p-4 cursor-pointer text-center hover:bg-brand-50 has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50 transition-all"><input type="radio" name="quiz-badge" value="star" class="hidden"><div class="w-10 h-10 mx-auto bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center mb-2"><i data-lucide="star"></i></div><span class="text-xs font-bold text-slate-600 block">Especialidad</span></label>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="border-t border-slate-100 pt-6">
-                                    <div class="flex justify-between items-end mb-4">
-                                        <h4 class="font-bold text-slate-800 text-lg">Cuestionario (Quiz)</h4>
-                                        <button onclick="adminAddQuestion()" class="bg-brand-50 text-brand-700 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-1 hover:bg-brand-100 transition-colors">
-                                            <i data-lucide="plus" class="w-4 h-4"></i> Pregunta
-                                        </button>
-                                    </div>
+                                    <div class="flex justify-between items-end mb-4"><h4 class="font-bold text-slate-800 text-lg">Cuestionario</h4><button onclick="adminAddQuestion()" class="bg-brand-50 text-brand-700 px-4 py-2 rounded-xl text-sm font-bold flex items-center gap-1 hover:bg-brand-100 transition-colors"><i data-lucide="plus" class="w-4 h-4"></i> Pregunta</button></div>
                                     <div id="admin-questions-container" class="space-y-6"></div>
                                 </div>
-
-                                <div class="mt-8 pt-6 border-t flex justify-end gap-3">
-                                    <button onclick="hideCourseBuilder()" class="bg-slate-100 text-slate-600 px-6 py-4 rounded-xl font-bold hover:bg-slate-200 transition-all">Cancelar</button>
-                                    <button onclick="handlePublishQuiz()" class="bg-brand-900 hover:bg-brand-800 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center gap-2 transition-transform active:scale-95 text-lg">
-                                        <i data-lucide="send" class="w-5 h-5"></i> Publicar Examen
-                                    </button>
-                                </div>
+                                <div class="mt-8 pt-6 border-t flex justify-end gap-3"><button onclick="hideCourseBuilder()" class="bg-slate-100 text-slate-600 px-6 py-4 rounded-xl font-bold hover:bg-slate-200 transition-all">Cancelar</button><button onclick="handlePublishQuiz()" class="bg-brand-900 hover:bg-brand-800 text-white font-bold py-4 px-8 rounded-xl shadow-lg flex items-center gap-2 transition-transform active:scale-95 text-lg"><i data-lucide="send" class="w-5 h-5"></i> Publicar Examen</button></div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- TAB 3: RESULTADOS Y RANKING -->
+                <div id="admin-tab-reportes" class="hidden-view">
+                    <div class="p-6 border-b border-slate-100 bg-slate-50 flex flex-col sm:flex-row gap-4 justify-between items-center">
+                        <h3 class="font-black text-slate-800 text-xl"><i data-lucide="bar-chart-2" class="text-brand-600 inline mr-2"></i> Ranking de Evaluaciones</h3>
+                        <select id="admin-report-quiz-select" class="form-input !mt-0 w-full sm:w-64 font-bold text-brand-900 border-brand-300" onchange="renderReportTable()">
+                            <option value="">Seleccione un curso...</option>
+                        </select>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-500 text-xs uppercase tracking-wider font-bold">
+                                    <th class="p-4 w-16 text-center">Rango</th><th class="p-4 text-center">Foto</th><th class="p-4">Empleado</th><th class="p-4">DNI</th><th class="p-4 text-center">Calificación</th><th class="p-4 text-center">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-report-table-body" class="divide-y divide-slate-100 text-sm font-medium text-slate-700">
+                                <tr><td colspan="6" class="p-12 text-center text-slate-500">Seleccione un examen arriba para ver el ranking.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
     <!-- Modales Admin -->
     <div id="admin-dni-modal" class="hidden-view fixed inset-0 z-[9999] bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in print:hidden">
-        <div class="bg-white rounded-3xl p-4 max-w-2xl w-full relative">
-            <button onclick="document.getElementById('admin-dni-modal').classList.add('hidden-view')" class="absolute -top-4 -right-4 bg-red-600 text-white p-3 rounded-full shadow-lg hover:bg-red-700 border-4 border-white transition-transform hover:scale-110"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <img id="admin-dni-img" src="" class="w-full rounded-2xl object-contain max-h-[80vh] bg-slate-100">
+        <div class="bg-white rounded-3xl p-4 max-w-2xl w-full relative"><button onclick="document.getElementById('admin-dni-modal').classList.add('hidden-view')" class="absolute -top-4 -right-4 bg-red-600 text-white p-3 rounded-full shadow-lg hover:bg-red-700 border-4 border-white transition-transform hover:scale-110"><i data-lucide="x" class="w-5 h-5"></i></button><img id="admin-dni-img" src="" class="w-full rounded-2xl object-contain max-h-[80vh] bg-slate-100"></div>
+    </div>
+
+    <!-- Modal: Hoja de Examen Corregida -->
+    <div id="admin-graded-exam-modal" class="hidden-view fixed inset-0 z-[9999] bg-slate-900/80 overflow-y-auto backdrop-blur-sm p-4 animate-fade-in">
+        <div class="bg-white rounded-2xl max-w-3xl mx-auto my-8 p-6 md:p-8 relative shadow-2xl w-full">
+            <div class="flex justify-between items-start mb-6 border-b pb-4">
+                <div>
+                    <h2 class="text-2xl font-black text-slate-800 flex items-center gap-2"><i data-lucide="check-circle" class="text-green-600"></i> Hoja de Examen</h2>
+                    <p id="graded-exam-subtitle" class="text-slate-500 font-medium mt-1"></p>
+                </div>
+                <button onclick="closeGradedExamModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 p-2 rounded-xl"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            
+            <div class="bg-slate-50 p-4 rounded-xl mb-6 flex justify-between items-center border border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div id="graded-exam-avatar" class="w-12 h-12 rounded-full bg-slate-200 overflow-hidden"></div>
+                    <div><p id="graded-exam-name" class="font-bold text-slate-800"></p><p id="graded-exam-dni" class="text-xs text-slate-500"></p></div>
+                </div>
+                <div class="text-right">
+                    <p class="text-xs font-bold text-slate-400 uppercase">Calificación Final</p>
+                    <p id="graded-exam-score" class="text-2xl font-black text-brand-900"></p>
+                </div>
+            </div>
+
+            <div id="graded-exam-questions" class="space-y-6"></div>
         </div>
     </div>
 
+    <!-- Modal Ficha Impresa -->
     <div id="admin-employee-modal" class="hidden-view fixed inset-0 z-[9999] bg-slate-900/80 overflow-y-auto backdrop-blur-sm p-4 animate-fade-in print:bg-transparent print:p-0 print:absolute print:inset-0">
         <div class="bg-white rounded-2xl max-w-4xl mx-auto my-8 p-8 relative shadow-2xl print:shadow-none print:my-0 print:p-0 w-full text-sm">
             <div class="flex justify-between items-center mb-6 print:hidden">
                 <h2 class="text-2xl font-black text-slate-800 flex items-center gap-2"><i data-lucide="file-text" class="text-brand-600"></i> Expediente del Trabajador</h2>
-                <div class="flex gap-2">
-                    <button onclick="window.print()" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-xl font-bold flex items-center gap-2 shadow-md"><i data-lucide="printer" class="w-4 h-4"></i> Imprimir</button>
-                    <button onclick="closeEmployeeModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 p-2 rounded-xl"><i data-lucide="x" class="w-5 h-5"></i></button>
-                </div>
+                <div class="flex gap-2"><button onclick="window.print()" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2 rounded-xl font-bold flex items-center gap-2 shadow-md"><i data-lucide="printer" class="w-4 h-4"></i> Imprimir</button><button onclick="closeEmployeeModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 p-2 rounded-xl"><i data-lucide="x" class="w-5 h-5"></i></button></div>
             </div>
-            
             <div id="printable-area" class="print:exact text-black">
                 <div class="flex justify-between items-start border-b-2 border-slate-800 pb-4 mb-4">
-                    <div class="flex gap-4 items-center">
-                        <img src="logoswat.png" alt="SWAT" class="h-16 w-auto object-contain">
-                        <div>
-                            <h1 class="text-2xl font-black uppercase tracking-wider mb-1">FICHA PERSONAL</h1>
-                            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Código: SWAT-HR-01</p>
-                        </div>
-                    </div>
+                    <div class="flex gap-4 items-center"><img src="logoswat.png" alt="SWAT" class="h-16 w-auto object-contain"><div><h1 class="text-2xl font-black uppercase tracking-wider mb-1">FICHA PERSONAL</h1><p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Código: SWAT-HR-01</p></div></div>
                     <div id="ficha-foto" class="w-24 h-24 bg-slate-100 border-2 border-slate-300 rounded-lg overflow-hidden flex items-center justify-center text-slate-400">Foto</div>
                 </div>
-
                 <h3 class="font-bold bg-slate-100 p-2 mb-3 uppercase text-[13px] border border-slate-300 print:bg-gray-200 text-brand-900">I. Datos Personales</h3>
                 <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 text-[13px]">
-                    <div><span class="font-bold">Apellidos y Nombres:</span> <span id="ficha-nombre-completo" class="ml-1 uppercase"></span></div>
-                    <div><span class="font-bold">DNI:</span> <span id="ficha-dni" class="ml-1"></span></div>
-                    <div><span class="font-bold">F. Nacimiento:</span> <span id="ficha-fnac" class="ml-1"></span></div>
-                    <div><span class="font-bold">Edad:</span> <span id="ficha-edad" class="ml-1"></span></div>
-                    <div class="col-span-2"><span class="font-bold">Domicilio:</span> <span id="ficha-domicilio" class="ml-1"></span></div>
-                    <div><span class="font-bold">Distrito:</span> <span id="ficha-distrito" class="ml-1"></span></div>
-                    <div><span class="font-bold">Provincia/Departamento:</span> <span id="ficha-provdep" class="ml-1"></span></div>
-                    <div><span class="font-bold">Celular:</span> <span id="ficha-celular" class="ml-1"></span></div>
-                    <div><span class="font-bold">Correo:</span> <span id="ficha-correo" class="ml-1"></span></div>
-                    <div><span class="font-bold">Estado Civil:</span> <span id="ficha-ecivil" class="ml-1"></span></div>
-                    <div><span class="font-bold">Nacionalidad:</span> <span id="ficha-nacionalidad" class="ml-1"></span></div>
-                    <div><span class="font-bold">Condición Vivienda:</span> <span id="ficha-vivienda" class="ml-1"></span></div>
-                    <div><span class="font-bold">Sistema Pensión:</span> <span id="ficha-pension" class="ml-1"></span></div>
-                    <div class="col-span-2"><span class="font-bold">Grado Instrucción:</span> <span id="ficha-instruccion" class="ml-1"></span></div>
-                    <div class="col-span-2"><span class="font-bold">Ocupación/Puesto:</span> <span id="ficha-ocupacion" class="ml-1"></span></div>
+                    <div><span class="font-bold">Apellidos y Nombres:</span> <span id="ficha-nombre-completo" class="ml-1 uppercase"></span></div><div><span class="font-bold">DNI:</span> <span id="ficha-dni" class="ml-1"></span></div>
+                    <div><span class="font-bold">F. Nacimiento:</span> <span id="ficha-fnac" class="ml-1"></span></div><div><span class="font-bold">Edad:</span> <span id="ficha-edad" class="ml-1"></span></div>
+                    <div class="col-span-2"><span class="font-bold">Domicilio:</span> <span id="ficha-domicilio" class="ml-1"></span></div><div><span class="font-bold">Distrito:</span> <span id="ficha-distrito" class="ml-1"></span></div><div><span class="font-bold">Provincia/Dep:</span> <span id="ficha-provdep" class="ml-1"></span></div>
+                    <div><span class="font-bold">Celular:</span> <span id="ficha-celular" class="ml-1"></span></div><div><span class="font-bold">Correo:</span> <span id="ficha-correo" class="ml-1"></span></div><div><span class="font-bold">Estado Civil:</span> <span id="ficha-ecivil" class="ml-1"></span></div><div><span class="font-bold">Nacionalidad:</span> <span id="ficha-nacionalidad" class="ml-1"></span></div>
+                    <div><span class="font-bold">Condición:</span> <span id="ficha-vivienda" class="ml-1"></span></div><div><span class="font-bold">Pensión:</span> <span id="ficha-pension" class="ml-1"></span></div><div class="col-span-2"><span class="font-bold">Instrucción:</span> <span id="ficha-instruccion" class="ml-1"></span></div><div class="col-span-2"><span class="font-bold">Ocupación:</span> <span id="ficha-ocupacion" class="ml-1"></span></div>
                 </div>
-
                 <h3 class="font-bold bg-slate-100 p-2 mb-3 uppercase text-[13px] border border-slate-300 print:bg-gray-200 text-brand-900">II. Emergencia</h3>
-                <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 text-[13px]">
-                    <div><span class="font-bold">Contacto:</span> <span id="ficha-em-nombre" class="ml-1 uppercase"></span></div>
-                    <div><span class="font-bold">Parentesco:</span> <span id="ficha-em-parentesco" class="ml-1"></span></div>
-                    <div class="col-span-2"><span class="font-bold">Domicilio:</span> <span id="ficha-em-domicilio" class="ml-1"></span></div>
-                    <div><span class="font-bold">Celular:</span> <span id="ficha-em-celular" class="ml-1"></span></div>
-                </div>
-
+                <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 text-[13px]"><div><span class="font-bold">Contacto:</span> <span id="ficha-em-nombre" class="ml-1 uppercase"></span></div><div><span class="font-bold">Parentesco:</span> <span id="ficha-em-parentesco" class="ml-1"></span></div><div class="col-span-2"><span class="font-bold">Domicilio:</span> <span id="ficha-em-domicilio" class="ml-1"></span></div><div><span class="font-bold">Celular:</span> <span id="ficha-em-celular" class="ml-1"></span></div></div>
                 <h3 class="font-bold bg-slate-100 p-2 mb-3 uppercase text-[13px] border border-slate-300 print:bg-gray-200 text-brand-900">III. Cónyuge</h3>
-                <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 text-[13px]">
-                    <div><span class="font-bold">Nombres:</span> <span id="ficha-con-nombre" class="ml-1 uppercase"></span></div>
-                    <div><span class="font-bold">DNI:</span> <span id="ficha-con-dni" class="ml-1"></span></div>
-                    <div><span class="font-bold">Edad:</span> <span id="ficha-con-edad" class="ml-1"></span></div>
-                </div>
-
-                <h3 class="font-bold bg-slate-100 p-2 mb-3 uppercase text-[13px] border border-slate-300 print:bg-gray-200 text-brand-900">IV. Hijos</h3>
-                <div id="ficha-hijos-list" class="mb-12 text-[13px]"></div>
-
-                <div class="grid grid-cols-2 gap-8 mt-16 text-center text-sm">
-                    <div class="flex flex-col items-center justify-end h-32"><div class="border-t border-black w-48 mb-2"></div><p class="font-bold uppercase tracking-wider">Firma del Trabajador</p></div>
-                    <div class="flex flex-col items-center justify-end h-32"><div class="border border-black w-24 h-32 mb-2 rounded-lg"></div><p class="font-bold uppercase tracking-wider">Huella Digital</p></div>
-                </div>
+                <div class="grid grid-cols-2 gap-y-3 gap-x-4 mb-6 text-[13px]"><div><span class="font-bold">Nombres:</span> <span id="ficha-con-nombre" class="ml-1 uppercase"></span></div><div><span class="font-bold">DNI:</span> <span id="ficha-con-dni" class="ml-1"></span></div><div><span class="font-bold">Edad:</span> <span id="ficha-con-edad" class="ml-1"></span></div></div>
+                <h3 class="font-bold bg-slate-100 p-2 mb-3 uppercase text-[13px] border border-slate-300 print:bg-gray-200 text-brand-900">IV. Hijos</h3><div id="ficha-hijos-list" class="mb-12 text-[13px]"></div>
+                <div class="grid grid-cols-2 gap-8 mt-16 text-center text-sm"><div class="flex flex-col items-center justify-end h-32"><div class="border-t border-black w-48 mb-2"></div><p class="font-bold uppercase tracking-wider">Firma del Trabajador</p></div><div class="flex flex-col items-center justify-end h-32"><div class="border border-black w-24 h-32 mb-2 rounded-lg"></div><p class="font-bold uppercase tracking-wider">Huella Digital</p></div></div>
             </div>
         </div>
     </div>
 
-    <!-- SCRIPTS PRINCIPALES Y LÓGICA -->
+    <!-- SCRIPTS PRINCIPALES -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, collection, getDocs, onSnapshot, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const appId = 'swat-hr-app';
-        const firebaseConfig = {
-          apiKey: "AIzaSyBMNPa3Ri0TIS7Coa7lrZ9-LL-wzucMv_s",
-          authDomain: "portal-swat-aqp.firebaseapp.com",
-          databaseURL: "https://portal-swat-aqp-default-rtdb.firebaseio.com",
-          projectId: "portal-swat-aqp",
-          storageBucket: "portal-swat-aqp.firebasestorage.app",
-          messagingSenderId: "1051482913972",
-          appId: "1:1051482913972:web:2e88506e5370e080586be1"
-        };
+        const firebaseConfig = { apiKey: "AIzaSyBMNPa3Ri0TIS7Coa7lrZ9-LL-wzucMv_s", authDomain: "portal-swat-aqp.firebaseapp.com", databaseURL: "https://portal-swat-aqp-default-rtdb.firebaseio.com", projectId: "portal-swat-aqp", storageBucket: "portal-swat-aqp.firebasestorage.app", messagingSenderId: "1051482913972", appId: "1:1051482913972:web:2e88506e5370e080586be1" };
+        const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app);
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        // Variables Globales
-        let currentUser = null;
-        let allQuizzes = []; 
-        let activeTakingQuiz = null; 
-        let allEmployees = [];
-        let mapLocation = null, hijosData = [], quizAnswers = {};
+        // Variables
+        let currentUser = null, allQuizzes = [], activeTakingQuiz = null, allEmployees = [], mapLocation = null, hijosData = [], quizAnswers = {};
         let profilePhotoBase64 = null, dniPhotoBase64 = null, phoneVerified = false, locationConfirmed = false, expectedPhoneCode = "1234";
-        let adminQuizQuestions = [{ q: '', options: ['', '', ''], answer: 0 }];
-        let leafletMap = null;
-        let leafletMarker = null;
-        let scannerStream = null;
+        let leafletMap = null, leafletMarker = null, scannerStream = null;
+        
+        // Estructura de pregunta para Creador de Quizzes (Añadido 'type' y 'textAnswer')
+        let adminQuizQuestions = [{ q: '', type: 'choice', options: ['', '', ''], answer: 0, textAnswer: '' }];
 
-        // UTILIDADES Y UI
-        window.showView = (viewId) => {
-            const views = ['loader-view', 'login-view', 'register-view', 'profile-view', 'quiz-view', 'admin-view'];
-            views.forEach(v => document.getElementById(v).classList.add('hidden-view'));
-            document.getElementById(viewId).classList.remove('hidden-view');
-            lucide.createIcons();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        };
-
-        window.showNotification = (msg, type = 'success', duration = 5000) => {
-            const container = document.getElementById('notification-container');
-            const icon = document.getElementById('notif-icon');
-            const message = document.getElementById('notif-message');
-            message.textContent = msg;
-            container.className = type === 'error' 
-                ? 'fixed top-4 right-4 z-[9999] p-4 rounded-xl border border-red-200 shadow-xl bg-red-50 text-red-800 flex items-center gap-3 animate-slide-up max-w-sm w-full print:hidden'
-                : 'fixed top-4 right-4 z-[9999] p-4 rounded-xl border border-green-200 shadow-xl bg-green-50 text-green-800 flex items-center gap-3 animate-slide-up max-w-sm w-full print:hidden';
-            icon.setAttribute('data-lucide', type === 'error' ? 'alert-circle' : 'check-circle');
-            icon.classList.add(type === 'error' ? 'text-red-500' : 'text-green-500');
-            container.classList.remove('hidden-view');
-            lucide.createIcons();
-            if (duration > 0) setTimeout(hideNotification, duration);
-        };
+        window.showView = (viewId) => { const views = ['loader-view', 'login-view', 'register-view', 'profile-view', 'quiz-view', 'admin-view']; views.forEach(v => document.getElementById(v).classList.add('hidden-view')); document.getElementById(viewId).classList.remove('hidden-view'); lucide.createIcons(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+        window.showNotification = (msg, type = 'success', duration = 5000) => { const container = document.getElementById('notification-container'); const icon = document.getElementById('notif-icon'); const message = document.getElementById('notif-message'); message.textContent = msg; container.className = type === 'error' ? 'fixed top-4 right-4 z-[9999] p-4 rounded-xl border border-red-200 shadow-xl bg-red-50 text-red-800 flex items-center gap-3 animate-slide-up max-w-sm w-full print:hidden' : 'fixed top-4 right-4 z-[9999] p-4 rounded-xl border border-green-200 shadow-xl bg-green-50 text-green-800 flex items-center gap-3 animate-slide-up max-w-sm w-full print:hidden'; icon.setAttribute('data-lucide', type === 'error' ? 'alert-circle' : 'check-circle'); icon.classList.add(type === 'error' ? 'text-red-500' : 'text-green-500'); container.classList.remove('hidden-view'); lucide.createIcons(); if (duration > 0) setTimeout(hideNotification, duration); };
         window.hideNotification = () => document.getElementById('notification-container').classList.add('hidden-view');
         window.logout = () => { currentUser = null; document.getElementById('login-dni').value = ''; showView('login-view'); };
 
-        // INIT APP
         async function initApp() {
             try {
                 await signInAnonymously(auth);
                 onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'quizzes'), (snap) => {
-                    allQuizzes = [];
-                    snap.forEach(d => allQuizzes.push({ id: d.id, ...d.data() }));
+                    allQuizzes = []; snap.forEach(d => allQuizzes.push({ id: d.id, ...d.data() }));
                     if(currentUser && !document.getElementById('profile-view').classList.contains('hidden-view')) renderProfileLMS();
-                    if(!document.getElementById('admin-view').classList.contains('hidden-view') && !document.getElementById('admin-tab-evaluaciones').classList.contains('hidden-view')) renderAdminCourseGrid();
+                    if(!document.getElementById('admin-view').classList.contains('hidden-view')){
+                        renderAdminCourseGrid();
+                        updateReportesSelect();
+                    }
                 });
                 showView('login-view');
-            } catch (error) {
-                console.error(error);
-                document.getElementById('loader-view').classList.add('hidden-view');
-                showView('login-view');
-                const errorPanel = document.getElementById('auth-error-panel');
-                errorPanel.classList.remove('hidden-view');
-                errorPanel.innerHTML = `<strong>⚠️ Error de Firebase:</strong> ${error.message}. Activa el acceso Anónimo en Auth.`;
-            }
+            } catch (error) { document.getElementById('loader-view').classList.add('hidden-view'); showView('login-view'); document.getElementById('auth-error-panel').classList.remove('hidden-view'); document.getElementById('auth-error-panel').innerHTML = `<strong>⚠️ Error:</strong> ${error.message}`; }
         }
         initApp();
 
-        // LOGIN
         document.getElementById('login-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const dni = document.getElementById('login-dni').value.trim();
+            e.preventDefault(); const dni = document.getElementById('login-dni').value.trim();
             if (dni.length < 8) { showNotification("DNI inválido", "error"); return; }
-            if (dni === 'adminswat2585') { showView('admin-view'); loadAllEmployees(); renderAdminCourseGrid(); return; }
+            if (dni === 'adminswat2585') { showView('admin-view'); loadAllEmployees(); renderAdminCourseGrid(); updateReportesSelect(); return; }
             if (!auth.currentUser) return;
-
-            const btn = document.getElementById('btn-login');
-            btn.innerHTML = '<div class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div> Buscando...';
-            btn.disabled = true;
-
+            const btn = document.getElementById('btn-login'); btn.innerHTML = '<div class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div> Buscando...'; btn.disabled = true;
             try {
                 const docSnap = await getDoc(doc(db, 'artifacts', appId, 'public', 'data', 'employees', dni));
                 if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    if(data.isActive === false) { showNotification("Acceso Denegado. Comuníquese con RRHH.", "error"); return; }
-                    currentUser = { id: docSnap.id, ...data };
-                    renderProfile();
-                    showNotification(`¡Bienvenido, ${currentUser.personal?.nombres}!`);
-                } else {
-                    currentUser = { id: dni, personal: { dni: dni } };
-                    renderRegisterForm();
-                }
-            } catch (error) { showNotification("Error al verificar identidad", "error"); } finally {
-                btn.innerHTML = '<i data-lucide="log-in" class="w-5 h-5"></i> Ingresar al Portal'; btn.disabled = false; lucide.createIcons();
-            }
+                    const data = docSnap.data(); if(data.isActive === false) { showNotification("Acceso Denegado.", "error"); return; }
+                    currentUser = { id: docSnap.id, ...data }; renderProfile(); showNotification(`¡Bienvenido, ${currentUser.personal?.nombres}!`);
+                } else { currentUser = { id: dni, personal: { dni: dni } }; renderRegisterForm(); }
+            } catch (error) { showNotification("Error al verificar", "error"); } finally { btn.innerHTML = '<i data-lucide="log-in" class="w-5 h-5"></i> Ingresar al Portal'; btn.disabled = false; lucide.createIcons(); }
         });
 
-        // ==========================================
-        // FUNCIONES DE FOTO NORMAL (PERFIL / FALLBACK)
-        // ==========================================
+        // FOTOS Y ESCANERS
         window.handlePhotoUpload = (event, type) => {
             const file = event.target.files[0]; if (!file) return;
             document.getElementById(`${type}-upload-btn`).innerHTML = '<div class="animate-spin h-6 w-6 border-2 border-brand-500 border-t-transparent rounded-full mb-2"></div><span class="text-xs text-brand-500">Procesando...</span>';
@@ -804,392 +658,102 @@
                     const canvas = document.createElement('canvas'); const ctx = canvas.getContext('2d');
                     if (type === 'profile') {
                         const size = Math.min(img.width, img.height); const MAX = 400; const finalSize = size > MAX ? MAX : size;
-                        canvas.width = finalSize; canvas.height = finalSize;
-                        ctx.drawImage(img, (img.width - size) / 2, (img.height - size) / 2, size, size, 0, 0, finalSize, finalSize);
+                        canvas.width = finalSize; canvas.height = finalSize; ctx.drawImage(img, (img.width - size) / 2, (img.height - size) / 2, size, size, 0, 0, finalSize, finalSize);
                         profilePhotoBase64 = canvas.toDataURL('image/jpeg', 0.7); document.getElementById('profile-preview').src = profilePhotoBase64;
                     } else {
-                        const MAX_WIDTH = 800; let w = img.width, h = img.height;
-                        if (w > MAX_WIDTH) { h = Math.round(h *= MAX_WIDTH / w); w = MAX_WIDTH; }
+                        const MAX_WIDTH = 800; let w = img.width, h = img.height; if (w > MAX_WIDTH) { h = Math.round(h *= MAX_WIDTH / w); w = MAX_WIDTH; }
                         canvas.width = w; canvas.height = h; ctx.drawImage(img, 0, 0, w, h);
                         dniPhotoBase64 = canvas.toDataURL('image/jpeg', 0.6); document.getElementById('dni-preview').src = dniPhotoBase64;
                     }
-                    document.getElementById(`${type}-upload-btn`).classList.add('hidden-view');
-                    document.getElementById(`${type}-preview-container`).classList.remove('hidden-view');
-                    if(type === 'profile') { document.getElementById('profile-upload-btn').innerHTML = '<div class="bg-white p-3 rounded-full shadow-sm mb-2 group-hover:scale-110 transition-transform"><i data-lucide="user-plus" class="w-8 h-8 text-brand-600"></i></div><span class="text-xs font-semibold text-brand-800 text-center px-4">Toca para tomar foto</span>'; } 
-                    else { document.getElementById('dni-upload-btn').innerHTML = '<div class="bg-white p-3 rounded-full shadow-sm mb-2 group-hover:scale-110 transition-transform text-brand-600"><i data-lucide="scan-line" class="w-8 h-8"></i></div><span class="text-xs font-bold text-brand-800 text-center px-4">Escanear DNI</span>'; }
-                    lucide.createIcons();
+                    document.getElementById(`${type}-upload-btn`).classList.add('hidden-view'); document.getElementById(`${type}-preview-container`).classList.remove('hidden-view');
+                    if(type === 'profile') { document.getElementById('profile-upload-btn').innerHTML = '<div class="bg-white p-3 rounded-full shadow-sm mb-2 group-hover:scale-110 transition-transform"><i data-lucide="user-plus" class="w-8 h-8 text-brand-600"></i></div><span class="text-xs font-semibold text-brand-800 text-center px-4">Toca para tomar foto</span>'; } else { document.getElementById('dni-upload-btn').innerHTML = '<div class="bg-white p-3 rounded-full shadow-sm mb-2 group-hover:scale-110 transition-transform text-brand-600"><i data-lucide="scan-line" class="w-8 h-8"></i></div><span class="text-xs font-bold text-brand-800 text-center px-4">Escanear DNI</span>'; } lucide.createIcons();
                 }; img.src = e.target.result;
             }; reader.readAsDataURL(file);
         };
-        window.removePhoto = (type) => {
-            if (type === 'profile') { profilePhotoBase64 = null; const ip = document.getElementById('reg_profile_foto'); if(ip) ip.value = ''; }
-            if (type === 'dni') { dniPhotoBase64 = null; const id = document.getElementById('reg_dni_foto'); if(id) id.value = ''; }
-            document.getElementById(`${type}-preview-container`).classList.add('hidden-view');
-            document.getElementById(`${type}-upload-btn`).classList.remove('hidden-view');
-        };
+        window.removePhoto = (type) => { if (type === 'profile') { profilePhotoBase64 = null; const ip = document.getElementById('reg_profile_foto'); if(ip) ip.value = ''; } if (type === 'dni') { dniPhotoBase64 = null; const id = document.getElementById('reg_dni_foto'); if(id) id.value = ''; } document.getElementById(`${type}-preview-container`).classList.add('hidden-view'); document.getElementById(`${type}-upload-btn`).classList.remove('hidden-view'); };
 
-        // ==========================================
-        // CONSULTA RENIEC
-        // ==========================================
-        window.searchReniecDni = async () => {
-            const dni = document.getElementById('reg_dni').value.trim();
-            if(!dni || dni.length !== 8) { showNotification("DNI inválido para buscar", "error"); return; }
-            
-            const btn = document.querySelector('button[onclick="searchReniecDni()"]');
-            const originalIcon = btn.innerHTML;
-            btn.innerHTML = '<div class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div>';
-            btn.disabled = true;
+        window.openDniScanner = async () => { document.getElementById('dni-scanner-modal').classList.remove('hidden-view'); try { scannerStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 } } }); document.getElementById('dni-video-feed').srcObject = scannerStream; } catch (e) { showNotification("Cámara no disponible.", "error"); window.closeDniScanner(); document.getElementById('reg_dni_foto').click(); } };
+        window.closeDniScanner = () => { document.getElementById('dni-scanner-modal').classList.add('hidden-view'); if (scannerStream) { scannerStream.getTracks().forEach(track => track.stop()); scannerStream = null; } };
+        window.captureDniFrame = () => { const video = document.getElementById('dni-video-feed'); const frame = document.getElementById('dni-guide-frame'); const canvas = document.createElement('canvas'); canvas.width = video.videoWidth; canvas.height = video.videoHeight; const ctx = canvas.getContext('2d'); ctx.drawImage(video, 0, 0, canvas.width, canvas.height); const vw = video.videoWidth; const vh = video.videoHeight; const rect = video.getBoundingClientRect(); const dw = rect.width; const dh = rect.height; const vr = vw / vh; const dr = dw / dh; let s, offsetX = 0, offsetY = 0; if (vr > dr) { s = vh / dh; offsetX = (vw - (dw * s)) / 2; } else { s = vw / dw; offsetY = (vh - (dh * s)) / 2; } const frameRect = frame.getBoundingClientRect(); const fx = frameRect.left - rect.left; const fy = frameRect.top - rect.top; const fw = frameRect.width; const fh = frameRect.height; const sx = offsetX + (fx * s); const sy = offsetY + (fy * s); const sw = fw * s; const sh = fh * s; const outW = 800; const outH = 800 * (fh / fw); const cropCanvas = document.createElement('canvas'); cropCanvas.width = outW; cropCanvas.height = outH; const cropCtx = cropCanvas.getContext('2d'); if (sw > 0 && sh > 0) cropCtx.drawImage(canvas, sx, sy, sw, sh, 0, 0, outW, outH); else cropCtx.drawImage(canvas, 0, 0, outW, outH); dniPhotoBase64 = cropCanvas.toDataURL('image/jpeg', 0.8); document.getElementById('dni-preview').src = dniPhotoBase64; document.getElementById('dni-upload-btn').classList.add('hidden-view'); document.getElementById('dni-preview-container').classList.remove('hidden-view'); window.closeDniScanner(); showNotification("DNI escaneado exitosamente"); };
+        window.openSelfieScanner = async () => { document.getElementById('selfie-scanner-modal').classList.remove('hidden-view'); try { scannerStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } } }); document.getElementById('selfie-video-feed').srcObject = scannerStream; } catch (e) { showNotification("Cámara no disponible.", "error"); window.closeSelfieScanner(); document.getElementById('reg_profile_foto').click(); } };
+        window.closeSelfieScanner = () => { document.getElementById('selfie-scanner-modal').classList.add('hidden-view'); if (scannerStream) { scannerStream.getTracks().forEach(track => track.stop()); scannerStream = null; } };
+        window.captureSelfieFrame = () => { const video = document.getElementById('selfie-video-feed'); const vw = video.videoWidth; const vh = video.videoHeight; const canvas = document.createElement('canvas'); canvas.width = vw; canvas.height = vh; const ctx = canvas.getContext('2d'); ctx.translate(vw, 0); ctx.scale(-1, 1); ctx.drawImage(video, 0, 0, vw, vh); const size = Math.min(vw, vh); const startX = (vw - size) / 2; const startY = (vh - size) / 2; const outSize = 400; const cropCanvas = document.createElement('canvas'); cropCanvas.width = outSize; cropCanvas.height = outSize; const cropCtx = cropCanvas.getContext('2d'); cropCtx.drawImage(canvas, startX, startY, size, size, 0, 0, outSize, outSize); profilePhotoBase64 = cropCanvas.toDataURL('image/jpeg', 0.8); document.getElementById('profile-preview').src = profilePhotoBase64; document.getElementById('profile-upload-btn').classList.add('hidden-view'); document.getElementById('profile-preview-container').classList.remove('hidden-view'); window.closeSelfieScanner(); showNotification("Selfie capturada"); };
 
-            try {
-                // Solución al 'Failed to fetch' (CORS): Usar proxy AllOrigins para la llamada a la API pública
-                let res;
-                try {
-                    res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.apis.net.pe/v1/dni?numero=' + dni)}`);
-                } catch (proxyError) {
-                    res = await fetch(`https://api.apis.net.pe/v1/dni?numero=${dni}`);
-                }
-
-                if(res && res.ok) {
-                    const data = await res.json();
-                    if(data.nombres) {
-                        const inputNombres = document.getElementById('reg_nombres');
-                        const inputApellidos = document.getElementById('reg_apellidos');
-                        
-                        inputNombres.value = data.nombres || '';
-                        inputApellidos.value = `${data.apellidoPaterno || ''} ${data.apellidoMaterno || ''}`.trim();
-                        
-                        // Bloquear campos para evitar alteración de datos oficiales
-                        inputNombres.readOnly = true; inputNombres.classList.add('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold');
-                        inputApellidos.readOnly = true; inputApellidos.classList.add('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold');
-                        
-                        showNotification("¡Datos obtenidos de RENIEC exitosamente!");
-                    } else {
-                        showNotification("DNI no encontrado. Escriba manualmente.", "error");
-                    }
-                } else {
-                    showNotification("No se pudo consultar el DNI. Escriba manualmente.", "error");
-                }
-            } catch(e) {
-                console.error("RENIEC fetch error:", e);
-                showNotification("El servicio de consulta bloqueó la petición. Escriba sus datos manualmente.", "error");
-            } finally {
-                btn.innerHTML = originalIcon;
-                btn.disabled = false;
-                lucide.createIcons();
-            }
-        };
-
-        // ==========================================
-        // ESCANER DE DNI
-        // ==========================================
-        window.openDniScanner = async () => {
-            document.getElementById('dni-scanner-modal').classList.remove('hidden-view');
-            try {
-                scannerStream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "environment", width: { ideal: 1920 }, height: { ideal: 1080 } }
-                });
-                document.getElementById('dni-video-feed').srcObject = scannerStream;
-            } catch (e) {
-                showNotification("No pudimos iniciar el escáner. Usando cámara normal.", "error");
-                window.closeDniScanner();
-                document.getElementById('reg_dni_foto').click();
-            }
-        };
-
-        window.closeDniScanner = () => {
-            document.getElementById('dni-scanner-modal').classList.add('hidden-view');
-            if (scannerStream) { scannerStream.getTracks().forEach(track => track.stop()); scannerStream = null; }
-        };
-
-        window.captureDniFrame = () => {
-            const video = document.getElementById('dni-video-feed');
-            const frame = document.getElementById('dni-guide-frame');
-
-            const canvas = document.createElement('canvas'); canvas.width = video.videoWidth; canvas.height = video.videoHeight;
-            const ctx = canvas.getContext('2d'); ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-            const vw = video.videoWidth; const vh = video.videoHeight;
-            const rect = video.getBoundingClientRect(); const dw = rect.width; const dh = rect.height;
-            const vr = vw / vh; const dr = dw / dh;
-            
-            let s, offsetX = 0, offsetY = 0;
-            if (vr > dr) { s = vh / dh; offsetX = (vw - (dw * s)) / 2; } else { s = vw / dw; offsetY = (vh - (dh * s)) / 2; }
-
-            const frameRect = frame.getBoundingClientRect();
-            const fx = frameRect.left - rect.left; const fy = frameRect.top - rect.top;
-            const fw = frameRect.width; const fh = frameRect.height;
-            const sx = offsetX + (fx * s); const sy = offsetY + (fy * s); const sw = fw * s; const sh = fh * s;
-
-            const outW = 800; const outH = 800 * (fh / fw);
-            const cropCanvas = document.createElement('canvas'); cropCanvas.width = outW; cropCanvas.height = outH;
-            const cropCtx = cropCanvas.getContext('2d');
-            
-            if (sw > 0 && sh > 0) cropCtx.drawImage(canvas, sx, sy, sw, sh, 0, 0, outW, outH);
-            else cropCtx.drawImage(canvas, 0, 0, outW, outH);
-
-            dniPhotoBase64 = cropCanvas.toDataURL('image/jpeg', 0.8);
-            document.getElementById('dni-preview').src = dniPhotoBase64;
-            document.getElementById('dni-upload-btn').classList.add('hidden-view');
-            document.getElementById('dni-preview-container').classList.remove('hidden-view');
-            window.closeDniScanner(); showNotification("DNI escaneado exitosamente");
-        };
-
-        // ==========================================
-        // ESCANER DE SELFIE (PERFIL)
-        // ==========================================
-        window.openSelfieScanner = async () => {
-            document.getElementById('selfie-scanner-modal').classList.remove('hidden-view');
-            try {
-                scannerStream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } }
-                });
-                document.getElementById('selfie-video-feed').srcObject = scannerStream;
-            } catch (e) {
-                showNotification("No pudimos iniciar cámara frontal. Usando cámara normal.", "error");
-                window.closeSelfieScanner();
-                document.getElementById('reg_profile_foto').click();
-            }
-        };
-
-        window.closeSelfieScanner = () => {
-            document.getElementById('selfie-scanner-modal').classList.add('hidden-view');
-            if (scannerStream) { scannerStream.getTracks().forEach(track => track.stop()); scannerStream = null; }
-        };
-
-        window.captureSelfieFrame = () => {
-            const video = document.getElementById('selfie-video-feed');
-            const vw = video.videoWidth; const vh = video.videoHeight;
-            
-            const canvas = document.createElement('canvas');
-            canvas.width = vw; canvas.height = vh;
-            const ctx = canvas.getContext('2d');
-            
-            // Voltear horizontalmente para deshacer el efecto espejo al guardar
-            ctx.translate(vw, 0); ctx.scale(-1, 1); 
-            ctx.drawImage(video, 0, 0, vw, vh);
-
-            // Recorte cuadrado del centro
-            const size = Math.min(vw, vh);
-            const startX = (vw - size) / 2;
-            const startY = (vh - size) / 2;
-
-            const outSize = 400;
-            const cropCanvas = document.createElement('canvas');
-            cropCanvas.width = outSize; cropCanvas.height = outSize;
-            const cropCtx = cropCanvas.getContext('2d');
-            cropCtx.drawImage(canvas, startX, startY, size, size, 0, 0, outSize, outSize);
-
-            profilePhotoBase64 = cropCanvas.toDataURL('image/jpeg', 0.8);
-            document.getElementById('profile-preview').src = profilePhotoBase64;
-            
-            document.getElementById('profile-upload-btn').classList.add('hidden-view');
-            document.getElementById('profile-preview-container').classList.remove('hidden-view');
-
-            window.closeSelfieScanner();
-            showNotification("Selfie capturada con éxito");
-        };
-
-        // ... MÁS UTILIDADES (Edad, Celular, GPS, Hijos, etc) ...
-        window.calculateAge = () => {
-            const dateStr = document.getElementById('reg_fechaNac').value; if(!dateStr) return;
-            const dob = new Date(dateStr); const today = new Date();
-            let age = today.getFullYear() - dob.getFullYear();
-            if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) age--;
-            document.getElementById('reg_edad').value = age;
-        };
-
-        window.startPhoneVerification = () => {
-            const tel = document.getElementById('reg_celular').value.trim(); if(tel.length < 9) { showNotification("Celular inválido", "error"); return; }
-            expectedPhoneCode = Math.floor(1000 + Math.random() * 9000).toString();
-            document.getElementById('demo-sms-code').innerText = expectedPhoneCode; document.getElementById('verify-code-input').value = '';
-            document.getElementById('verify-error').classList.add('hidden-view'); document.getElementById('phone-modal').classList.remove('hidden-view');
-            document.getElementById('verify-code-input').focus();
-        };
+        window.searchReniecDni = async () => { const dni = document.getElementById('reg_dni').value.trim(); if(!dni || dni.length !== 8) { showNotification("DNI inválido", "error"); return; } const btn = document.querySelector('button[onclick="searchReniecDni()"]'); const originalIcon = btn.innerHTML; btn.innerHTML = '<div class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full"></div>'; btn.disabled = true; try { let res; try { res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent('https://api.apis.net.pe/v1/dni?numero=' + dni)}`); } catch (proxyError) { res = await fetch(`https://api.apis.net.pe/v1/dni?numero=${dni}`); } if(res && res.ok) { const data = await res.json(); if(data.nombres) { const inputNombres = document.getElementById('reg_nombres'); const inputApellidos = document.getElementById('reg_apellidos'); inputNombres.value = data.nombres || ''; inputApellidos.value = `${data.apellidoPaterno || ''} ${data.apellidoMaterno || ''}`.trim(); inputNombres.readOnly = true; inputNombres.classList.add('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold'); inputApellidos.readOnly = true; inputApellidos.classList.add('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold'); showNotification("¡Datos RENIEC exitosos!"); } else { showNotification("No encontrado.", "error"); } } else { showNotification("Error al consultar.", "error"); } } catch(e) { showNotification("Servicio no disponible.", "error"); } finally { btn.innerHTML = originalIcon; btn.disabled = false; lucide.createIcons(); } };
+        window.calculateAge = () => { const dateStr = document.getElementById('reg_fechaNac').value; if(!dateStr) return; const dob = new Date(dateStr); const today = new Date(); let age = today.getFullYear() - dob.getFullYear(); if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) age--; document.getElementById('reg_edad').value = age; };
+        window.startPhoneVerification = () => { const tel = document.getElementById('reg_celular').value.trim(); if(tel.length < 9) { showNotification("Celular inválido", "error"); return; } expectedPhoneCode = Math.floor(1000 + Math.random() * 9000).toString(); document.getElementById('demo-sms-code').innerText = expectedPhoneCode; document.getElementById('verify-code-input').value = ''; document.getElementById('verify-error').classList.add('hidden-view'); document.getElementById('phone-modal').classList.remove('hidden-view'); document.getElementById('verify-code-input').focus(); };
         window.closePhoneModal = () => document.getElementById('phone-modal').classList.add('hidden-view');
-        window.confirmPhoneVerification = () => {
-            if(document.getElementById('verify-code-input').value.trim() === expectedPhoneCode) {
-                phoneVerified = true; document.getElementById('btn-verify-phone').classList.add('hidden-view');
-                document.getElementById('phone-badge').classList.remove('hidden-view'); closePhoneModal(); showNotification("Celular verificado");
-            } else { document.getElementById('verify-error').classList.remove('hidden-view'); }
-        };
+        window.confirmPhoneVerification = () => { if(document.getElementById('verify-code-input').value.trim() === expectedPhoneCode) { phoneVerified = true; document.getElementById('btn-verify-phone').classList.add('hidden-view'); document.getElementById('phone-badge').classList.remove('hidden-view'); closePhoneModal(); showNotification("Celular verificado"); } else { document.getElementById('verify-error').classList.remove('hidden-view'); } };
         window.resetPhoneVerification = () => { phoneVerified = false; document.getElementById('btn-verify-phone').classList.remove('hidden-view'); document.getElementById('phone-badge').classList.add('hidden-view'); };
 
-        function initLeafletMap() {
-            if (!window.L) return; if (leafletMap) { leafletMap.invalidateSize(); return; }
-            mapLocation = currentUser?.personal?.coordenadas || { lat: -16.4090, lng: -71.5375 };
-            leafletMap = L.map('map-container').setView([mapLocation.lat, mapLocation.lng], 14);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OSM' }).addTo(leafletMap);
-            leafletMarker = L.marker([mapLocation.lat, mapLocation.lng], { draggable: true }).addTo(leafletMap);
-            const onChangeMap = (lat, lng) => { mapLocation = { lat, lng }; resetLocationConfirmation(); handleReverseGeocode(lat, lng); };
-            leafletMarker.on('dragend', function() { onChangeMap(leafletMarker.getLatLng().lat, leafletMarker.getLatLng().lng); });
-            leafletMap.on('click', function(e) { leafletMarker.setLatLng(e.latlng); onChangeMap(e.latlng.lat, e.latlng.lng); });
-            leafletMap.on('locationfound', function(e) { leafletMarker.setLatLng(e.latlng); onChangeMap(e.latlng.lat, e.latlng.lng); showNotification("GPS Obtenido"); });
-            setTimeout(() => leafletMap.invalidateSize(), 500);
-        }
+        function initLeafletMap() { if (!window.L) return; if (leafletMap) { leafletMap.invalidateSize(); return; } mapLocation = currentUser?.personal?.coordenadas || { lat: -16.4090, lng: -71.5375 }; leafletMap = L.map('map-container').setView([mapLocation.lat, mapLocation.lng], 14); L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: 'OSM' }).addTo(leafletMap); leafletMarker = L.marker([mapLocation.lat, mapLocation.lng], { draggable: true }).addTo(leafletMap); const onChangeMap = (lat, lng) => { mapLocation = { lat, lng }; resetLocationConfirmation(); handleReverseGeocode(lat, lng); }; leafletMarker.on('dragend', function() { onChangeMap(leafletMarker.getLatLng().lat, leafletMarker.getLatLng().lng); }); leafletMap.on('click', function(e) { leafletMarker.setLatLng(e.latlng); onChangeMap(e.latlng.lat, e.latlng.lng); }); leafletMap.on('locationfound', function(e) { leafletMarker.setLatLng(e.latlng); onChangeMap(e.latlng.lat, e.latlng.lng); showNotification("GPS Obtenido"); }); setTimeout(() => leafletMap.invalidateSize(), 500); }
         window.autoLocateMap = () => { if (leafletMap) leafletMap.locate({setView: true, maxZoom: 17}); };
-        async function handleReverseGeocode(lat, lng) {
-            try {
-                const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`); const data = await res.json();
-                if (data && data.address) {
-                    const a = data.address;
-                    document.getElementById('reg_domicilio').value = [a.road, a.house_number, a.pedestrian].filter(Boolean).join(' ');
-                    document.getElementById('reg_distrito').value = a.suburb || a.city_district || a.town || a.village || '';
-                    document.getElementById('reg_provincia').value = a.city || a.county || '';
-                    document.getElementById('reg_departamento').value = a.state || a.region || '';
-                }
-            } catch(e) {}
-        }
-        window.confirmLocation = () => {
-            locationConfirmed = true; document.getElementById('map-error-msg').classList.add('hidden-view');
-            const btn = document.getElementById('btn-confirm-map');
-            btn.className = "bg-green-500 text-white px-5 py-2 rounded-xl text-sm font-bold flex items-center gap-2 shadow-md transition-all";
-            btn.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i> Confirmado'; lucide.createIcons();
-        };
-        function resetLocationConfirmation() {
-            locationConfirmed = false; const btn = document.getElementById('btn-confirm-map');
-            btn.className = "bg-brand-900 hover:bg-brand-800 text-white px-5 py-2 rounded-xl text-sm font-bold flex items-center gap-2 shadow-md transition-all";
-            btn.innerHTML = 'Confirmar Mapa'; lucide.createIcons();
-        }
+        async function handleReverseGeocode(lat, lng) { try { const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`); const data = await res.json(); if (data && data.address) { const a = data.address; document.getElementById('reg_domicilio').value = [a.road, a.house_number, a.pedestrian].filter(Boolean).join(' '); document.getElementById('reg_distrito').value = a.suburb || a.city_district || a.town || a.village || ''; document.getElementById('reg_provincia').value = a.city || a.county || ''; document.getElementById('reg_departamento').value = a.state || a.region || ''; } } catch(e) {} }
+        window.confirmLocation = () => { locationConfirmed = true; document.getElementById('map-error-msg').classList.add('hidden-view'); const btn = document.getElementById('btn-confirm-map'); btn.className = "bg-green-500 text-white px-5 py-2 rounded-xl text-sm font-bold flex items-center gap-2 shadow-md transition-all"; btn.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i> Confirmado'; lucide.createIcons(); };
+        function resetLocationConfirmation() { locationConfirmed = false; const btn = document.getElementById('btn-confirm-map'); btn.className = "bg-brand-900 hover:bg-brand-800 text-white px-5 py-2 rounded-xl text-sm font-bold flex items-center gap-2 shadow-md transition-all"; btn.innerHTML = 'Confirmar Mapa'; lucide.createIcons(); }
 
         window.addHijo = () => { hijosData.push({ nombres: '', dni: '', fechaNacimiento: '', edad: '' }); renderHijos(); };
         window.removeHijo = (idx) => { hijosData.splice(idx, 1); renderHijos(); };
         window.updateHijo = (idx, field, value) => { hijosData[idx][field] = value; };
-        function renderHijos() {
-            const container = document.getElementById('hijos-container');
-            if(hijosData.length === 0) { container.innerHTML = '<p class="text-slate-400 italic text-sm p-4 text-center bg-slate-50 rounded-xl">No registra hijos.</p>'; return; }
-            container.innerHTML = hijosData.map((h, i) => `
-                <div class="flex flex-col md:flex-row gap-4 p-4 border border-slate-200 rounded-2xl bg-slate-50 relative group">
-                    <div class="flex-1"><label class="form-label mb-1 block">Nombres</label><input type="text" value="${h.nombres}" onchange="updateHijo(${i}, 'nombres', this.value)" class="form-input !mt-0"></div>
-                    <div class="w-full md:w-32"><label class="form-label mb-1 block">DNI</label><input type="text" value="${h.dni}" onchange="updateHijo(${i}, 'dni', this.value)" class="form-input !mt-0"></div>
-                    <div class="w-full md:w-40"><label class="form-label mb-1 block">F. Nacimiento</label><input type="date" value="${h.fechaNacimiento}" onchange="updateHijo(${i}, 'fechaNacimiento', this.value)" class="form-input !mt-0"></div>
-                    <div class="w-full md:w-20"><label class="form-label mb-1 block">Edad</label><input type="number" value="${h.edad}" onchange="updateHijo(${i}, 'edad', this.value)" class="form-input !mt-0"></div>
-                    <button type="button" onclick="removeHijo(${i})" class="md:mt-7 text-red-500 bg-white shadow-sm border border-red-100 hover:bg-red-50 p-2.5 rounded-xl self-end"><i data-lucide="trash-2" class="w-5 h-5"></i></button>
-                </div>`).join('');
-            lucide.createIcons();
-        }
+        function renderHijos() { const container = document.getElementById('hijos-container'); if(hijosData.length === 0) { container.innerHTML = '<p class="text-slate-400 italic text-sm p-4 text-center bg-slate-50 rounded-xl">No registra hijos.</p>'; return; } container.innerHTML = hijosData.map((h, i) => ` <div class="flex flex-col md:flex-row gap-4 p-4 border border-slate-200 rounded-2xl bg-slate-50 relative group"> <div class="flex-1"><label class="form-label mb-1 block">Nombres</label><input type="text" value="${h.nombres}" onchange="updateHijo(${i}, 'nombres', this.value)" class="form-input !mt-0"></div> <div class="w-full md:w-32"><label class="form-label mb-1 block">DNI</label><input type="text" value="${h.dni}" onchange="updateHijo(${i}, 'dni', this.value)" class="form-input !mt-0"></div> <div class="w-full md:w-40"><label class="form-label mb-1 block">F. Nacimiento</label><input type="date" value="${h.fechaNacimiento}" onchange="updateHijo(${i}, 'fechaNacimiento', this.value)" class="form-input !mt-0"></div> <div class="w-full md:w-20"><label class="form-label mb-1 block">Edad</label><input type="number" value="${h.edad}" onchange="updateHijo(${i}, 'edad', this.value)" class="form-input !mt-0"></div> <button type="button" onclick="removeHijo(${i})" class="md:mt-7 text-red-500 bg-white shadow-sm border border-red-100 hover:bg-red-50 p-2.5 rounded-xl self-end"><i data-lucide="trash-2" class="w-5 h-5"></i></button> </div>`).join(''); lucide.createIcons(); }
 
-        // ==========================================
-        // GESTIÓN DE LA FICHA (RENDER Y GUARDADO)
-        // ==========================================
         function renderRegisterForm() {
             const p = currentUser?.personal || {}, em = currentUser?.emergencia || {}, con = currentUser?.conyuge || {}; hijosData = currentUser?.hijos || [];
             const q = (id, val) => document.getElementById(id).value = val || '';
             q('reg_dni', p.dni || currentUser.id); q('reg_nombres', p.nombres); q('reg_apellidos', p.apellidos); q('reg_domicilio', p.domicilio);
-            
-            // Desbloquear campos de nombres por defecto al renderizar
-            const inputNombres = document.getElementById('reg_nombres'); const inputApellidos = document.getElementById('reg_apellidos');
-            inputNombres.readOnly = false; inputNombres.classList.remove('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold');
-            inputApellidos.readOnly = false; inputApellidos.classList.remove('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold');
-
-            q('reg_distrito', p.distrito); q('reg_provincia', p.provincia); q('reg_departamento', p.departamento); q('reg_condicion', p.condicion);
-            q('reg_pension', p.pension); q('reg_nacionalidad', p.nacionalidad); q('reg_fechaNac', p.fechaNacimiento); q('reg_edad', p.edad);
-            q('reg_estadoCivil', p.estadoCivil); q('reg_correo', p.correo); q('reg_celular', p.celular); q('reg_ocupacion', p.ocupacion); q('reg_instruccion', p.gradoInstruccion);
-            q('em_contacto', em.contacto); q('em_parentesco', em.parentesco); q('em_domicilio', em.domicilio); q('em_celular', em.celular);
-            q('con_nombres', con.nombres); q('con_dni', con.dni); q('con_edad', con.edad);
-
+            const inputNombres = document.getElementById('reg_nombres'); const inputApellidos = document.getElementById('reg_apellidos'); inputNombres.readOnly = false; inputNombres.classList.remove('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold'); inputApellidos.readOnly = false; inputApellidos.classList.remove('bg-slate-100', 'opacity-80', 'text-brand-900', 'font-bold');
+            q('reg_distrito', p.distrito); q('reg_provincia', p.provincia); q('reg_departamento', p.departamento); q('reg_condicion', p.condicion); q('reg_pension', p.pension); q('reg_nacionalidad', p.nacionalidad); q('reg_fechaNac', p.fechaNacimiento); q('reg_edad', p.edad); q('reg_estadoCivil', p.estadoCivil); q('reg_correo', p.correo); q('reg_celular', p.celular); q('reg_ocupacion', p.ocupacion); q('reg_instruccion', p.gradoInstruccion); q('em_contacto', em.contacto); q('em_parentesco', em.parentesco); q('em_domicilio', em.domicilio); q('em_celular', em.celular); q('con_nombres', con.nombres); q('con_dni', con.dni); q('con_edad', con.edad);
             if (p.fotoPerfil) { profilePhotoBase64 = p.fotoPerfil; document.getElementById('profile-preview').src = p.fotoPerfil; document.getElementById('profile-preview-container').classList.remove('hidden-view'); document.getElementById('profile-upload-btn').classList.add('hidden-view'); } else removePhoto('profile');
             if (p.dniFoto) { dniPhotoBase64 = p.dniFoto; document.getElementById('dni-preview').src = p.dniFoto; document.getElementById('dni-preview-container').classList.remove('hidden-view'); document.getElementById('dni-upload-btn').classList.add('hidden-view'); } else removePhoto('dni');
-            
-            resetPhoneVerification(); if(p.celular) confirmPhoneVerification();
-            resetLocationConfirmation(); if(p.coordenadas) confirmLocation();
-            
-            renderHijos(); showView('register-view'); setTimeout(initLeafletMap, 500);
+            resetPhoneVerification(); if(p.celular) confirmPhoneVerification(); resetLocationConfirmation(); if(p.coordenadas) confirmLocation(); renderHijos(); showView('register-view'); setTimeout(initLeafletMap, 500);
         }
         window.editProfile = () => renderRegisterForm();
 
         document.getElementById('register-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            if (!profilePhotoBase64) { showNotification("Falta Selfie", "error"); document.getElementById('profile-upload-btn').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-            if (!dniPhotoBase64) { showNotification("Falta escanear el DNI", "error"); document.getElementById('dni-upload-btn').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-            if (!phoneVerified) { showNotification("Verifica el celular", "error"); document.getElementById('reg_celular').focus(); return; }
-            if (!locationConfirmed) { showNotification("Confirma mapa", "error"); document.getElementById('map-error-msg').classList.remove('hidden-view'); document.getElementById('location-section').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-
-            const btn = document.getElementById('btn-save-register'); btn.disabled = true;
-            btn.innerHTML = '<div class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div> Guardando...'; 
-
+            e.preventDefault(); if (!profilePhotoBase64) { showNotification("Falta Selfie", "error"); return; } if (!dniPhotoBase64) { showNotification("Falta DNI", "error"); return; } if (!phoneVerified) { showNotification("Verifica el celular", "error"); return; } if (!locationConfirmed) { showNotification("Confirma mapa", "error"); return; }
+            const btn = document.getElementById('btn-save-register'); btn.disabled = true; btn.innerHTML = '<div class="animate-spin h-5 w-5 border-2 border-white border-t-transparent rounded-full mr-2"></div> Guardando...'; 
             const dni = document.getElementById('reg_dni').value;
-            const dataToSave = {
-                ...currentUser, id: dni, isActive: currentUser?.isActive !== false, registeredAt: currentUser?.registeredAt || new Date().toISOString(),
-                personal: { dni: dni, fotoPerfil: profilePhotoBase64, dniFoto: dniPhotoBase64, nombres: document.getElementById('reg_nombres').value, apellidos: document.getElementById('reg_apellidos').value, domicilio: document.getElementById('reg_domicilio').value, distrito: document.getElementById('reg_distrito').value, provincia: document.getElementById('reg_provincia').value, departamento: document.getElementById('reg_departamento').value, condicion: document.getElementById('reg_condicion').value, pension: document.getElementById('reg_pension').value, nacionalidad: document.getElementById('reg_nacionalidad').value, fechaNacimiento: document.getElementById('reg_fechaNac').value, edad: document.getElementById('reg_edad').value, estadoCivil: document.getElementById('reg_estadoCivil').value, correo: document.getElementById('reg_correo').value, celular: document.getElementById('reg_celular').value, ocupacion: document.getElementById('reg_ocupacion').value, gradoInstruccion: document.getElementById('reg_instruccion').value, coordenadas: mapLocation },
-                emergencia: { contacto: document.getElementById('em_contacto').value, parentesco: document.getElementById('em_parentesco').value, domicilio: document.getElementById('em_domicilio').value, celular: document.getElementById('em_celular').value },
-                conyuge: { nombres: document.getElementById('con_nombres').value, dni: document.getElementById('con_dni').value, edad: document.getElementById('con_edad').value },
-                hijos: hijosData
-            };
-            try { await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'employees', dni), dataToSave); currentUser = dataToSave; renderProfile(); showNotification("Ficha guardada"); } 
-            catch (error) { showNotification("Error guardando", "error"); } 
-            finally { btn.innerHTML = '<i data-lucide="check-circle" class="w-6 h-6"></i> Guardar Ficha Oficial'; btn.disabled = false; lucide.createIcons(); }
+            const dataToSave = { ...currentUser, id: dni, isActive: currentUser?.isActive !== false, registeredAt: currentUser?.registeredAt || new Date().toISOString(), personal: { dni: dni, fotoPerfil: profilePhotoBase64, dniFoto: dniPhotoBase64, nombres: document.getElementById('reg_nombres').value, apellidos: document.getElementById('reg_apellidos').value, domicilio: document.getElementById('reg_domicilio').value, distrito: document.getElementById('reg_distrito').value, provincia: document.getElementById('reg_provincia').value, departamento: document.getElementById('reg_departamento').value, condicion: document.getElementById('reg_condicion').value, pension: document.getElementById('reg_pension').value, nacionalidad: document.getElementById('reg_nacionalidad').value, fechaNacimiento: document.getElementById('reg_fechaNac').value, edad: document.getElementById('reg_edad').value, estadoCivil: document.getElementById('reg_estadoCivil').value, correo: document.getElementById('reg_correo').value, celular: document.getElementById('reg_celular').value, ocupacion: document.getElementById('reg_ocupacion').value, gradoInstruccion: document.getElementById('reg_instruccion').value, coordenadas: mapLocation }, emergencia: { contacto: document.getElementById('em_contacto').value, parentesco: document.getElementById('em_parentesco').value, domicilio: document.getElementById('em_domicilio').value, celular: document.getElementById('em_celular').value }, conyuge: { nombres: document.getElementById('con_nombres').value, dni: document.getElementById('con_dni').value, edad: document.getElementById('con_edad').value }, hijos: hijosData };
+            try { await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'employees', dni), dataToSave); currentUser = dataToSave; renderProfile(); showNotification("Ficha guardada"); } catch (error) { showNotification("Error guardando", "error"); } finally { btn.innerHTML = '<i data-lucide="check-circle" class="w-6 h-6"></i> Guardar Ficha Oficial'; btn.disabled = false; lucide.createIcons(); }
         });
 
-        // ==========================================
-        // PERFIL LMS DEL EMPLEADO
-        // ==========================================
+        // PERFIL LMS
         function renderProfile() {
-            const avatarContainer = document.getElementById('prof_avatar_container');
-            avatarContainer.innerHTML = currentUser.personal?.fotoPerfil ? `<img src="${currentUser.personal.fotoPerfil}" class="w-full h-full object-cover">` : `<i data-lucide="user" class="w-10 h-10"></i>`;
-            document.getElementById('prof_name').textContent = `${currentUser.personal.nombres} ${currentUser.personal.apellidos}`;
-            document.getElementById('prof_puesto').textContent = currentUser.personal.ocupacion;
-            document.getElementById('prof_dni_txt').textContent = currentUser.id;
-            document.getElementById('prof_celular').textContent = currentUser.personal.celular;
-            document.getElementById('prof_correo').textContent = currentUser.personal.correo || 'No especificado';
-            document.getElementById('prof_domicilio').textContent = `${currentUser.personal.domicilio}, ${currentUser.personal.distrito}`;
-            document.getElementById('prof_em').textContent = `${currentUser.emergencia.contacto} (${currentUser.emergencia.celular})`;
-            renderProfileLMS();
-            showView('profile-view');
+            const avatarContainer = document.getElementById('prof_avatar_container'); avatarContainer.innerHTML = currentUser.personal?.fotoPerfil ? `<img src="${currentUser.personal.fotoPerfil}" class="w-full h-full object-cover">` : `<i data-lucide="user" class="w-10 h-10"></i>`;
+            document.getElementById('prof_name').textContent = `${currentUser.personal.nombres} ${currentUser.personal.apellidos}`; document.getElementById('prof_puesto').textContent = currentUser.personal.ocupacion; document.getElementById('prof_dni_txt').textContent = currentUser.id; document.getElementById('prof_celular').textContent = currentUser.personal.celular; document.getElementById('prof_correo').textContent = currentUser.personal.correo || 'No especificado'; document.getElementById('prof_domicilio').textContent = `${currentUser.personal.domicilio}, ${currentUser.personal.distrito}`; document.getElementById('prof_em').textContent = `${currentUser.emergencia.contacto} (${currentUser.emergencia.celular})`;
+            renderProfileLMS(); showView('profile-view');
         }
 
         function renderProfileLMS() {
-            const badgesContainer = document.getElementById('badges-container');
-            const coursesContainer = document.getElementById('courses-container');
+            const badgesContainer = document.getElementById('badges-container'); const coursesContainer = document.getElementById('courses-container');
             let badgesHtml = ''; let coursesHtml = '';
+            const completedScores = currentUser.completedQuizzes || {}; const completed = []; const pending = [];
+            allQuizzes.forEach(quiz => {
+                const qData = completedScores[quiz.id];
+                if (qData !== undefined) {
+                    const score = typeof qData === 'object' ? qData.score : qData; // Compatibilidad
+                    completed.push({ ...quiz, score });
+                } else pending.push(quiz);
+            });
 
-            const completedScores = currentUser.completedQuizzes || {};
-            const completed = []; const pending = [];
-            allQuizzes.forEach(quiz => { if (completedScores[quiz.id] !== undefined) completed.push({ ...quiz, score: completedScores[quiz.id] }); else pending.push(quiz); });
-
-            if (completed.length === 0) {
-                badgesHtml = `<p class="text-amber-700/60 font-medium italic w-full text-center py-4">Aún no has ganado ninguna insignia. ¡Toma un curso para comenzar tu colección!</p>`;
-            } else {
+            if (completed.length === 0) badgesHtml = `<p class="text-amber-700/60 font-medium italic w-full text-center py-4">Aún no has ganado ninguna insignia.</p>`;
+            else {
                 completed.forEach(c => {
-                    const badgeIcon = c.badge || 'award';
-                    let medalColors = 'bg-yellow-100 text-yellow-600 border-yellow-300';
-                    let rankText = 'Aprobado';
+                    const badgeIcon = c.badge || 'award'; let medalColors = 'bg-yellow-100 text-yellow-600 border-yellow-300'; let rankText = 'Aprobado';
                     if(c.score === 100) { medalColors = 'bg-amber-100 text-amber-600 border-amber-400 shadow-md shadow-amber-200/50'; rankText = 'Excelencia'; }
-                    badgesHtml += `
-                        <div class="flex flex-col items-center group cursor-default" title="Nota: ${c.score}/100">
-                            <div class="w-16 h-16 rounded-full border-2 ${medalColors} flex items-center justify-center transform transition-transform group-hover:scale-110 mb-2 relative">
-                                <i data-lucide="${badgeIcon}" class="w-8 h-8"></i>
-                                ${c.score === 100 ? `<div class="absolute -top-1 -right-1 bg-white rounded-full p-0.5 shadow-sm"><i data-lucide="star" class="w-3 h-3 text-amber-500 fill-current"></i></div>` : ''}
-                            </div>
-                            <span class="text-[10px] font-bold text-amber-900 uppercase tracking-wider text-center max-w-[80px] leading-tight">${c.title.substring(0, 15)}...</span>
-                            <span class="text-[9px] font-medium text-amber-700">${rankText}</span>
-                        </div>
-                    `;
+                    badgesHtml += `<div class="flex flex-col items-center group cursor-default" title="Nota: ${c.score}/100"><div class="w-16 h-16 rounded-full border-2 ${medalColors} flex items-center justify-center transform transition-transform group-hover:scale-110 mb-2 relative"><i data-lucide="${badgeIcon}" class="w-8 h-8"></i>${c.score === 100 ? `<div class="absolute -top-1 -right-1 bg-white rounded-full p-0.5 shadow-sm"><i data-lucide="star" class="w-3 h-3 text-amber-500 fill-current"></i></div>` : ''}</div><span class="text-[10px] font-bold text-amber-900 uppercase tracking-wider text-center max-w-[80px] leading-tight">${c.title.substring(0, 15)}...</span><span class="text-[9px] font-medium text-amber-700">${rankText}</span></div>`;
                 });
             }
             badgesContainer.innerHTML = badgesHtml;
 
-            if (pending.length === 0) {
-                coursesHtml = `<div class="bg-slate-50 p-6 rounded-2xl text-center border border-slate-100"><i data-lucide="check-circle" class="w-10 h-10 mx-auto text-slate-300 mb-2"></i><p class="font-bold text-slate-500">Todo al día</p></div>`;
-            } else {
-                pending.forEach(p => {
-                    coursesHtml += `
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-brand-300 transition-all gap-4">
-                            <div class="flex items-center gap-4">
-                                <div class="bg-slate-100 p-3 rounded-xl text-brand-600"><i data-lucide="${p.badge || 'book-open'}" class="w-6 h-6"></i></div>
-                                <div><h4 class="font-bold text-slate-800">${p.title}</h4><p class="text-xs text-slate-500">${p.questions.length} preguntas disponibles.</p></div>
-                            </div>
-                            <button onclick="startQuiz('${p.id}')" class="w-full sm:w-auto px-5 py-2.5 bg-brand-50 text-brand-700 font-bold rounded-xl hover:bg-brand-100 transition-colors whitespace-nowrap">Comenzar Curso</button>
-                        </div>
-                    `;
-                });
+            if (pending.length === 0) coursesHtml = `<div class="bg-slate-50 p-6 rounded-2xl text-center border border-slate-100"><i data-lucide="check-circle" class="w-10 h-10 mx-auto text-slate-300 mb-2"></i><p class="font-bold text-slate-500">Todo al día</p></div>`;
+            else {
+                pending.forEach(p => { coursesHtml += `<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:border-brand-300 transition-all gap-4"><div class="flex items-center gap-4"><div class="bg-slate-100 p-3 rounded-xl text-brand-600"><i data-lucide="${p.badge || 'book-open'}" class="w-6 h-6"></i></div><div><h4 class="font-bold text-slate-800">${p.title}</h4><p class="text-xs text-slate-500">${p.questions.length} preguntas disponibles.</p></div></div><button onclick="startQuiz('${p.id}')" class="w-full sm:w-auto px-5 py-2.5 bg-brand-50 text-brand-700 font-bold rounded-xl hover:bg-brand-100 transition-colors whitespace-nowrap">Comenzar Curso</button></div>`; });
             }
-            coursesContainer.innerHTML = coursesHtml;
-            lucide.createIcons();
+            coursesContainer.innerHTML = coursesHtml; lucide.createIcons();
         }
 
-        // ==========================================
-        // QUIZ EXAMEN ACADEMY
-        // ==========================================
+        // TOMA DE EXAMEN (Actualizado para texto libre)
         window.startQuiz = (quizId) => {
             const quiz = allQuizzes.find(q => q.id === quizId); if (!quiz) return;
             activeTakingQuiz = quiz; quizAnswers = {};
@@ -1197,70 +761,78 @@
             const badgeEl = document.getElementById('quiz-view-badge');
             let bg = 'bg-brand-600'; let icon = quiz.badge || 'book-open';
             if(icon === 'shield-check') bg = 'bg-blue-600'; else if(icon === 'heart-pulse') bg = 'bg-red-600'; else if(icon === 'star') bg = 'bg-amber-500';
-            badgeEl.className = `w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-lg ${bg}`;
-            badgeEl.innerHTML = `<i data-lucide="${icon}" class="w-8 h-8"></i>`;
+            badgeEl.className = `w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-lg ${bg}`; badgeEl.innerHTML = `<i data-lucide="${icon}" class="w-8 h-8"></i>`;
 
-            document.getElementById('quiz-questions-container').innerHTML = quiz.questions.map((q, idx) => `
-                <div class="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-200">
+            document.getElementById('quiz-questions-container').innerHTML = quiz.questions.map((q, idx) => {
+                let inputHtml = '';
+                if (q.type === 'text') {
+                    inputHtml = `<input type="text" oninput="selectQuizOption(${idx}, this.value)" class="form-input !mt-0 focus:border-brand-500" placeholder="Escriba su respuesta aquí...">`;
+                } else {
+                    inputHtml = q.options.map((opt, optIdx) => `
+                        <label class="flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all bg-white hover:border-brand-300 border-slate-200 shadow-sm has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
+                            <input type="radio" name="q-${idx}" value="${optIdx}" onchange="selectQuizOption(${idx}, ${optIdx})" class="w-5 h-5 text-brand-600 focus:ring-brand-500" />
+                            <span class="text-slate-700 font-medium">${opt}</span>
+                        </label>
+                    `).join('');
+                }
+                return `<div class="bg-slate-50 p-6 md:p-8 rounded-3xl border border-slate-200">
                     <p class="font-bold text-lg mb-6 text-slate-800 leading-relaxed"><span class="text-brand-600 mr-2">${idx + 1}.</span>${q.q}</p>
-                    <div class="space-y-3">
-                        ${q.options.map((opt, optIdx) => `
-                            <label class="flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all bg-white hover:border-brand-300 border-slate-200 shadow-sm has-[:checked]:border-brand-600 has-[:checked]:bg-brand-50">
-                                <input type="radio" name="q-${idx}" value="${optIdx}" onchange="selectQuizOption(${idx}, ${optIdx})" class="w-5 h-5 text-brand-600 focus:ring-brand-500" />
-                                <span class="text-slate-700 font-medium">${opt}</span>
-                            </label>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
+                    <div class="space-y-3">${inputHtml}</div>
+                </div>`;
+            }).join('');
             showView('quiz-view');
         };
 
-        window.selectQuizOption = (qIdx, optIdx) => quizAnswers[qIdx] = optIdx;
+        window.selectQuizOption = (qIdx, value) => quizAnswers[qIdx] = value;
 
         window.submitQuiz = async () => {
             if(!activeTakingQuiz) return;
             if(Object.keys(quizAnswers).length < activeTakingQuiz.questions.length) { showNotification("Responda todas las preguntas", "error"); return; }
+            
             let score = 0; const pointPerQ = 100 / activeTakingQuiz.questions.length;
-            activeTakingQuiz.questions.forEach((q, idx) => { if (parseInt(quizAnswers[idx]) === parseInt(q.answer)) score += pointPerQ; });
+            activeTakingQuiz.questions.forEach((q, idx) => { 
+                let isCorrect = false;
+                if (q.type === 'text') {
+                    const uAns = (quizAnswers[idx] || '').toString().trim().toLowerCase();
+                    const cAns = (q.textAnswer || '').toString().trim().toLowerCase();
+                    if (uAns === cAns) isCorrect = true;
+                } else {
+                    if (parseInt(quizAnswers[idx]) === parseInt(q.answer)) isCorrect = true;
+                }
+                if (isCorrect) score += pointPerQ; 
+            });
             score = Math.round(score);
 
             const btn = document.getElementById('btn-submit-quiz'); btn.disabled = true;
             try {
                 const currentQuizzes = currentUser.completedQuizzes || {};
-                const updatedQuizzes = { ...currentQuizzes, [activeTakingQuiz.id]: score };
+                // Nuevo formato: Guardamos objeto con score, respuestas e instante.
+                const updatedQuizzes = { ...currentQuizzes, [activeTakingQuiz.id]: { score: score, answers: quizAnswers, date: new Date().toISOString() } };
                 await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'employees', currentUser.id), { completedQuizzes: updatedQuizzes }, { merge: true });
                 currentUser.completedQuizzes = updatedQuizzes;
                 renderProfile(); showNotification(`¡Curso completado! Nota: ${score}/100`);
             } catch (e) { showNotification("Error de envío", "error"); } finally { btn.disabled = false; activeTakingQuiz = null; }
         };
 
-        // ==========================================
-        // ADMIN PANEL Y CREADOR LMS
-        // ==========================================
+        // ADMIN PANEL
         window.switchAdminTab = (tab) => {
-            document.getElementById('admin-tab-personal').classList.add('hidden-view');
-            document.getElementById('admin-tab-evaluaciones').classList.add('hidden-view');
+            ['personal', 'evaluaciones', 'reportes'].forEach(t => document.getElementById(`admin-tab-${t}`).classList.add('hidden-view'));
             document.getElementById(`admin-tab-${tab}`).classList.remove('hidden-view');
-
             const classActive = 'bg-white px-6 py-3 rounded-xl font-bold shadow-sm border-2 border-brand-600 text-brand-800 flex items-center gap-2 whitespace-nowrap transition-colors';
             const classInactive = 'bg-white px-6 py-3 rounded-xl font-bold shadow-sm border-2 border-transparent text-slate-500 hover:text-slate-700 flex items-center gap-2 whitespace-nowrap transition-colors';
-            document.getElementById('tab-personal').className = tab === 'personal' ? classActive : classInactive;
-            document.getElementById('tab-evaluaciones').className = tab === 'evaluaciones' ? classActive : classInactive;
+            ['personal', 'evaluaciones', 'reportes'].forEach(t => document.getElementById(`tab-${t}`).className = tab === t ? classActive : classInactive);
             if(tab === 'evaluaciones') renderAdminCourseGrid();
+            if(tab === 'reportes') updateReportesSelect();
         };
 
         window.loadAllEmployees = async () => {
             try {
                 const snap = await getDocs(collection(db, 'artifacts', appId, 'public', 'data', 'employees'));
                 allEmployees = []; snap.forEach(d => allEmployees.push({ id: d.id, ...d.data() }));
-                
                 document.getElementById('admin-count').innerHTML = `<i data-lucide="users" class="text-brand-600"></i> Trabajadores (${allEmployees.length})`;
                 const tbody = document.getElementById('admin-table-body');
-                
-                if(allEmployees.length === 0){
-                    tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-500 font-medium">No hay trabajadores en la base de datos.</td></tr>';
-                } else {
+                if(allEmployees.length === 0){ tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-500 font-medium">No hay trabajadores registrados.</td></tr>'; } 
+                else {
                     tbody.innerHTML = allEmployees.map(emp => {
                         const isActive = emp.isActive !== false;
                         const userQuizzes = emp.completedQuizzes || {}; const numCompleted = Object.keys(userQuizzes).length;
@@ -1269,125 +841,192 @@
                         else if(numCompleted === 0) lmsBadge = `<span class="bg-orange-100 text-orange-700 px-2 py-1 rounded-lg text-xs font-bold inline-block">0/${allQuizzes.length} Cursos</span>`;
                         else if(numCompleted === allQuizzes.length) lmsBadge = `<span class="bg-green-100 text-green-700 px-2 py-1 rounded-lg text-xs font-bold inline-block">Al día (${numCompleted})</span>`;
                         else lmsBadge = `<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded-lg text-xs font-bold inline-block">${numCompleted}/${allQuizzes.length} Cursos</span>`;
-
                         if(!isActive) lmsBadge = `<span class="bg-red-100 text-red-700 px-2 py-1 rounded-lg text-xs font-bold inline-block">Bloqueado</span>`;
 
                         const avatarHtml = emp.personal?.fotoPerfil ? `<img src="${emp.personal.fotoPerfil}" class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm mx-auto ${!isActive ? 'grayscale opacity-50' : ''}">` : `<div class="w-12 h-12 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center mx-auto ${!isActive ? 'opacity-50' : ''}"><i data-lucide="user" class="w-6 h-6"></i></div>`;
                         const toggleIcon = isActive ? 'toggle-right' : 'toggle-left'; const toggleColor = isActive ? 'text-green-600 hover:bg-green-100' : 'text-slate-400 hover:bg-slate-200';
 
-                        return `<tr class="hover:bg-brand-50/50 transition-colors border-b border-slate-50 ${!isActive ? 'bg-red-50/30' : ''}">
-                            <td class="p-3 align-middle">${avatarHtml}</td>
-                            <td class="p-3 font-bold text-slate-800 align-middle ${!isActive ? 'line-through text-slate-400' : ''}">${emp.id}</td>
-                            <td class="p-3 align-middle font-medium ${!isActive ? 'text-slate-500' : ''}">${emp.personal?.apellidos || ''}, ${emp.personal?.nombres || ''}</td>
-                            <td class="p-3 text-slate-600 align-middle text-xs">${emp.personal?.ocupacion || ''}</td>
-                            <td class="p-3 text-center align-middle">${lmsBadge}</td>
-                            <td class="p-3 text-center align-middle">
-                                <button onclick="viewEmployeeData('${emp.id}')" class="text-brand-600 hover:text-brand-800 p-2 bg-brand-50 hover:bg-brand-100 rounded-lg mr-1 transition-colors" title="Ver e Imprimir Ficha"><i data-lucide="printer" class="w-4 h-4"></i></button>
-                                ${emp.personal?.dniFoto ? `<button onclick="viewAdminDni('${emp.id}')" class="text-indigo-600 hover:text-indigo-800 p-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg mr-1 transition-colors" title="Ver Foto DNI"><i data-lucide="camera" class="w-4 h-4"></i></button>` : ''}
-                                ${emp.personal?.coordenadas ? `<a href="https://www.google.com/maps/search/?api=1&query=${emp.personal.coordenadas.lat},${emp.personal.coordenadas.lng}" target="_blank" class="inline-block text-green-600 hover:text-green-800 p-2 bg-green-50 hover:bg-green-100 rounded-lg transition-colors" title="Abrir en Google Maps"><i data-lucide="map-pin" class="w-4 h-4"></i></a>` : ''}
-                            </td>
-                            <td class="p-3 text-center align-middle whitespace-nowrap">
-                                <button onclick="toggleEmployeeStatus('${emp.id}', ${isActive})" class="${toggleColor} p-2 bg-slate-50 rounded-lg mr-1 transition-colors" title="${isActive ? 'Deshabilitar' : 'Habilitar'}"><i data-lucide="${toggleIcon}" class="w-4 h-4"></i></button>
-                                <button onclick="deleteEmployee('${emp.id}')" class="text-red-500 hover:text-red-700 p-2 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                            </td>
-                        </tr>`;
+                        return `<tr class="hover:bg-brand-50/50 transition-colors border-b border-slate-50 ${!isActive ? 'bg-red-50/30' : ''}"><td class="p-3 align-middle">${avatarHtml}</td><td class="p-3 font-bold text-slate-800 align-middle ${!isActive ? 'line-through text-slate-400' : ''}">${emp.id}</td><td class="p-3 align-middle font-medium ${!isActive ? 'text-slate-500' : ''}">${emp.personal?.apellidos || ''}, ${emp.personal?.nombres || ''}</td><td class="p-3 text-slate-600 align-middle text-xs">${emp.personal?.ocupacion || ''}</td><td class="p-3 text-center align-middle">${lmsBadge}</td><td class="p-3 text-center align-middle whitespace-nowrap"><button onclick="viewEmployeeData('${emp.id}')" class="text-brand-600 hover:text-brand-800 p-2 bg-brand-50 hover:bg-brand-100 rounded-lg mr-1 transition-colors" title="Ver e Imprimir"><i data-lucide="printer" class="w-4 h-4"></i></button>${emp.personal?.dniFoto ? `<button onclick="viewAdminDni('${emp.id}')" class="text-indigo-600 hover:text-indigo-800 p-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg mr-1 transition-colors" title="Foto DNI"><i data-lucide="camera" class="w-4 h-4"></i></button>` : ''}${emp.personal?.coordenadas ? `<a href="https://www.google.com/maps/search/?api=1&query=${emp.personal.coordenadas.lat},${emp.personal.coordenadas.lng}" target="_blank" class="inline-block text-green-600 hover:text-green-800 p-2 bg-green-50 hover:bg-green-100 rounded-lg transition-colors" title="Mapa"><i data-lucide="map-pin" class="w-4 h-4"></i></a>` : ''}</td><td class="p-3 text-center align-middle whitespace-nowrap"><button onclick="toggleEmployeeStatus('${emp.id}', ${isActive})" class="${toggleColor} p-2 bg-slate-50 rounded-lg mr-1 transition-colors"><i data-lucide="${toggleIcon}" class="w-4 h-4"></i></button><button onclick="deleteEmployee('${emp.id}')" class="text-red-500 hover:text-red-700 p-2 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button></td></tr>`;
                     }).join('');
-                }
-                lucide.createIcons();
+                } lucide.createIcons();
             } catch (e) {}
         };
 
+        // ADMIN CURSOS
         function renderAdminCourseGrid() {
             const grid = document.getElementById('admin-courses-grid');
-            if(allQuizzes.length === 0) {
-                grid.innerHTML = `<div class="col-span-full p-12 text-center border-2 border-dashed border-slate-200 rounded-3xl"><i data-lucide="book-open" class="w-12 h-12 mx-auto text-slate-300 mb-2"></i><p class="text-slate-500 font-medium">Aún no hay cursos creados en la Academia.</p></div>`;
-            } else {
-                grid.innerHTML = allQuizzes.map(quiz => `
-                    <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow relative">
-                        <div class="flex items-center gap-3 mb-4">
-                            <div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center"><i data-lucide="${quiz.badge || 'book-open'}"></i></div>
-                            <div class="flex-1">
-                                <h4 class="font-bold text-slate-800 leading-tight">${quiz.title}</h4>
-                                <p class="text-xs text-slate-400 mt-0.5">${quiz.questions.length} preguntas</p>
-                            </div>
-                        </div>
-                        <button onclick="deleteQuiz('${quiz.id}')" class="w-full text-red-500 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl text-sm font-bold transition-colors">Eliminar Curso</button>
-                    </div>
-                `).join('');
-            }
-            lucide.createIcons();
+            if(allQuizzes.length === 0) { grid.innerHTML = `<div class="col-span-full p-12 text-center border-2 border-dashed border-slate-200 rounded-3xl"><i data-lucide="book-open" class="w-12 h-12 mx-auto text-slate-300 mb-2"></i><p class="text-slate-500 font-medium">Aún no hay cursos creados en la Academia.</p></div>`; } 
+            else { grid.innerHTML = allQuizzes.map(quiz => `<div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow relative"><div class="flex items-center gap-3 mb-4"><div class="w-12 h-12 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center"><i data-lucide="${quiz.badge || 'book-open'}"></i></div><div class="flex-1"><h4 class="font-bold text-slate-800 leading-tight">${quiz.title}</h4><p class="text-xs text-slate-400 mt-0.5">${quiz.questions.length} preguntas</p></div></div><button onclick="deleteQuiz('${quiz.id}')" class="w-full text-red-500 bg-red-50 hover:bg-red-100 px-4 py-2 rounded-xl text-sm font-bold transition-colors">Eliminar Curso</button></div>`).join(''); } lucide.createIcons();
         }
 
-        window.showCourseBuilder = () => {
-            adminQuizQuestions = [{ q: '', options: ['', '', ''], answer: 0 }];
-            document.getElementById('admin-quiz-title').value = ''; const descEl = document.getElementById('admin-quiz-desc'); if (descEl) descEl.value = '';
-            renderAdminQuizBuilder(); document.getElementById('admin-course-list').classList.add('hidden-view'); document.getElementById('admin-course-builder').classList.remove('hidden-view');
-        };
+        window.showCourseBuilder = () => { adminQuizQuestions = [{ q: '', type: 'choice', options: ['', '', ''], answer: 0, textAnswer: '' }]; document.getElementById('admin-quiz-title').value = ''; renderAdminQuizBuilder(); document.getElementById('admin-course-list').classList.add('hidden-view'); document.getElementById('admin-course-builder').classList.remove('hidden-view'); };
         window.hideCourseBuilder = () => { document.getElementById('admin-course-builder').classList.add('hidden-view'); document.getElementById('admin-course-list').classList.remove('hidden-view'); };
         window.deleteQuiz = async (id) => { if(!confirm("¿Borrar este curso para siempre?")) return; try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'quizzes', id)); showNotification("Curso eliminado."); } catch(e) { showNotification("Error al eliminar", "error"); } };
 
-        window.adminAddQuestion = () => { adminQuizQuestions.push({ q: '', options: ['', '', ''], answer: 0 }); renderAdminQuizBuilder(); };
+        // ADMIN BUILDER LOGIC (Actualizado para Textos y Borrar Opciones)
+        window.adminAddQuestion = () => { adminQuizQuestions.push({ q: '', type: 'choice', options: ['', '', ''], answer: 0, textAnswer: '' }); renderAdminQuizBuilder(); };
         window.adminRemoveQuestion = (idx) => { adminQuizQuestions.splice(idx, 1); renderAdminQuizBuilder(); };
+        window.adminChangeQType = (qIdx, type) => { adminQuizQuestions[qIdx].type = type; renderAdminQuizBuilder(); };
         window.adminUpdateQ = (idx, val) => { adminQuizQuestions[idx].q = val; };
         window.adminUpdateOpt = (qIdx, optIdx, val) => { adminQuizQuestions[qIdx].options[optIdx] = val; };
         window.adminSetAnswer = (qIdx, optIdx) => { adminQuizQuestions[qIdx].answer = optIdx; renderAdminQuizBuilder(); };
         window.adminAddOption = (qIdx) => { adminQuizQuestions[qIdx].options.push(''); renderAdminQuizBuilder(); };
+        window.adminRemoveOption = (qIdx, optIdx) => { 
+            if(adminQuizQuestions[qIdx].options.length <= 2) { showNotification("Mínimo 2 opciones", "error"); return; }
+            adminQuizQuestions[qIdx].options.splice(optIdx, 1);
+            if(adminQuizQuestions[qIdx].answer === optIdx) adminQuizQuestions[qIdx].answer = 0;
+            else if(adminQuizQuestions[qIdx].answer > optIdx) adminQuizQuestions[qIdx].answer--;
+            renderAdminQuizBuilder(); 
+        };
+        window.adminUpdateTextAnswer = (qIdx, val) => { adminQuizQuestions[qIdx].textAnswer = val; };
 
         function renderAdminQuizBuilder() {
             const container = document.getElementById('admin-questions-container');
-            container.innerHTML = adminQuizQuestions.map((q, qIdx) => `
-                <div class="bg-white p-6 rounded-2xl border border-slate-200 relative shadow-sm hover:border-brand-300 transition-colors">
+            container.innerHTML = adminQuizQuestions.map((q, qIdx) => {
+                let optionsHtml = '';
+                if (q.type === 'text') {
+                    optionsHtml = `<div class="mt-3"><label class="form-label text-slate-500 mb-1 block">Palabra(s) Clave Correcta(s)</label><input type="text" value="${q.textAnswer || ''}" onchange="adminUpdateTextAnswer(${qIdx}, this.value)" class="form-input focus:border-brand-500 bg-green-50 border-green-200" placeholder="Ej. Extintor"></div>`;
+                } else {
+                    optionsHtml = `<div class="space-y-3 mt-3">
+                        <label class="form-label text-slate-500 mb-1 block">Opciones (Selecciona la correcta)</label>
+                        ${q.options.map((opt, optIdx) => `
+                            <div class="flex items-center gap-2">
+                                <input type="radio" name="correct-${qIdx}" ${parseInt(q.answer) === optIdx ? 'checked' : ''} onchange="adminSetAnswer(${qIdx}, ${optIdx})" class="w-5 h-5 text-green-500 focus:ring-green-500 cursor-pointer accent-green-600" />
+                                <input type="text" value="${opt}" onchange="adminUpdateOpt(${qIdx}, ${optIdx}, this.value)" class="form-input !mt-0 flex-1 ${parseInt(q.answer) === optIdx ? 'border-green-400 bg-green-50 text-green-900 font-bold' : 'focus:border-brand-500'}" placeholder="Opción ${optIdx + 1}">
+                                <button onclick="adminRemoveOption(${qIdx}, ${optIdx})" class="text-red-400 hover:bg-red-50 p-2 rounded-lg transition-colors"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            </div>
+                        `).join('')}
+                        <button onclick="adminAddOption(${qIdx})" class="text-sm text-brand-600 font-bold flex items-center gap-1 mt-2 px-3 py-1 hover:bg-brand-50 rounded-lg transition-colors"><i data-lucide="plus" class="w-4 h-4"></i> Añadir opción extra</button>
+                    </div>`;
+                }
+
+                return `<div class="bg-white p-6 rounded-2xl border border-slate-200 relative shadow-sm hover:border-brand-300 transition-colors">
                     ${adminQuizQuestions.length > 1 ? `<button onclick="adminRemoveQuestion(${qIdx})" class="absolute top-4 right-4 text-red-400 hover:text-red-600 bg-red-50 p-2 rounded-lg"><i data-lucide="trash-2" class="w-4 h-4"></i></button>` : ''}
-                    <div class="mb-5 pr-10">
+                    <div class="mb-4 pr-10">
                         <label class="form-label mb-2 block text-brand-600">Pregunta ${qIdx + 1}</label>
                         <input type="text" value="${q.q}" onchange="adminUpdateQ(${qIdx}, this.value)" class="form-input focus:border-brand-500" placeholder="Escriba el enunciado de la pregunta...">
                     </div>
-                    <div class="space-y-3 pl-4 border-l-4 border-slate-100">
-                        <label class="form-label text-slate-500 mb-2 block">Opciones (Selecciona la correcta)</label>
-                        ${q.options.map((opt, optIdx) => `
-                            <div class="flex items-center gap-3">
-                                <input type="radio" name="correct-${qIdx}" ${parseInt(q.answer) === optIdx ? 'checked' : ''} onchange="adminSetAnswer(${qIdx}, ${optIdx})" class="w-5 h-5 text-green-500 focus:ring-green-500 cursor-pointer accent-green-600" />
-                                <input type="text" value="${opt}" onchange="adminUpdateOpt(${qIdx}, ${optIdx}, this.value)" class="form-input !mt-0 flex-1 ${parseInt(q.answer) === optIdx ? 'border-green-400 bg-green-50 text-green-900 font-bold' : 'focus:border-brand-500'}" placeholder="Opción ${optIdx + 1}">
-                            </div>
-                        `).join('')}
-                        <button onclick="adminAddOption(${qIdx})" class="text-sm text-brand-600 font-bold flex items-center gap-1 mt-3 px-3 py-1 hover:bg-brand-50 rounded-lg transition-colors"><i data-lucide="plus" class="w-4 h-4"></i> Añadir opción extra</button>
+                    <div class="pl-4 border-l-4 border-slate-100">
+                        <div class="flex gap-4 mb-2">
+                            <label class="text-sm font-medium flex items-center gap-1 cursor-pointer"><input type="radio" name="type-${qIdx}" ${q.type==='choice'?'checked':''} onchange="adminChangeQType(${qIdx}, 'choice')" class="accent-brand-600"> Opción Múltiple</label>
+                            <label class="text-sm font-medium flex items-center gap-1 cursor-pointer"><input type="radio" name="type-${qIdx}" ${q.type==='text'?'checked':''} onchange="adminChangeQType(${qIdx}, 'text')" class="accent-brand-600"> Texto Libre</label>
+                        </div>
+                        ${optionsHtml}
                     </div>
-                </div>
-            `).join('');
+                </div>`;
+            }).join('');
             lucide.createIcons();
         }
 
         window.handlePublishQuiz = async () => {
             const title = document.getElementById('admin-quiz-title').value.trim();
             const badge = document.querySelector('input[name="quiz-badge"]:checked').value;
-            if(!title || adminQuizQuestions.some(q => !q.q || q.options.some(o => !o))) { showNotification("Rellena todos los campos vacíos del examen", "error"); return; }
-            try {
-                const newId = 'course_' + Date.now();
-                const newQuiz = { id: newId, title, badge, questions: adminQuizQuestions, publishedAt: new Date().toISOString() };
-                await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'quizzes', newId), newQuiz);
-                showNotification("¡Curso publicado con éxito!"); hideCourseBuilder();
-            } catch (e) { showNotification("Error al publicar", "error"); }
+            let isValid = title && adminQuizQuestions.every(q => q.q.trim() !== '' && (q.type === 'text' ? q.textAnswer.trim() !== '' : q.options.every(o => o.trim() !== '')));
+            if(!isValid) { showNotification("Rellena todos los campos y respuestas vacías", "error"); return; }
+            try { const newId = 'course_' + Date.now(); const newQuiz = { id: newId, title, badge, questions: adminQuizQuestions, publishedAt: new Date().toISOString() }; await setDoc(doc(db, 'artifacts', appId, 'public', 'data', 'quizzes', newId), newQuiz); showNotification("¡Curso publicado con éxito!"); hideCourseBuilder(); } catch (e) { showNotification("Error al publicar", "error"); }
         };
 
+        // REPORTES Y RANKING TAB
+        window.updateReportesSelect = () => {
+            const select = document.getElementById('admin-report-quiz-select');
+            select.innerHTML = '<option value="">Seleccione un curso...</option>' + allQuizzes.map(q => `<option value="${q.id}">${q.title}</option>`).join('');
+            renderReportTable();
+        };
+
+        window.renderReportTable = () => {
+            const qId = document.getElementById('admin-report-quiz-select').value;
+            const tbody = document.getElementById('admin-report-table-body');
+            if(!qId) { tbody.innerHTML = '<tr><td colspan="6" class="p-12 text-center text-slate-500">Seleccione un examen arriba para ver el ranking.</td></tr>'; return; }
+            
+            // Filtrar y ordenar
+            let ranked = allEmployees.filter(e => e.completedQuizzes && e.completedQuizzes[qId] !== undefined);
+            ranked.sort((a, b) => {
+                let scoreA = typeof a.completedQuizzes[qId] === 'object' ? a.completedQuizzes[qId].score : a.completedQuizzes[qId];
+                let scoreB = typeof b.completedQuizzes[qId] === 'object' ? b.completedQuizzes[qId].score : b.completedQuizzes[qId];
+                return scoreB - scoreA;
+            });
+
+            if(ranked.length === 0) { tbody.innerHTML = '<tr><td colspan="6" class="p-12 text-center text-slate-500">Nadie ha rendido esta evaluación aún.</td></tr>'; return; }
+
+            tbody.innerHTML = ranked.map((emp, i) => {
+                const qData = emp.completedQuizzes[qId];
+                const score = typeof qData === 'object' ? qData.score : qData;
+                const hasDetails = typeof qData === 'object' && qData.answers;
+                
+                let rankTrophy = `<span class="text-slate-500 font-bold">#${i+1}</span>`;
+                if(i===0) rankTrophy = `<div class="w-8 h-8 mx-auto bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center"><i data-lucide="trophy" class="w-4 h-4"></i></div>`;
+                else if(i===1) rankTrophy = `<div class="w-8 h-8 mx-auto bg-slate-200 text-slate-600 rounded-full flex items-center justify-center"><i data-lucide="medal" class="w-4 h-4"></i></div>`;
+                else if(i===2) rankTrophy = `<div class="w-8 h-8 mx-auto bg-amber-100 text-amber-700 rounded-full flex items-center justify-center"><i data-lucide="medal" class="w-4 h-4"></i></div>`;
+
+                const avatarHtml = emp.personal?.fotoPerfil ? `<img src="${emp.personal.fotoPerfil}" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm mx-auto">` : `<div class="w-10 h-10 rounded-full bg-slate-200 text-slate-400 flex items-center justify-center mx-auto"><i data-lucide="user" class="w-5 h-5"></i></div>`;
+
+                return `<tr class="hover:bg-slate-50 transition-colors">
+                    <td class="p-3 text-center align-middle">${rankTrophy}</td>
+                    <td class="p-3 align-middle">${avatarHtml}</td>
+                    <td class="p-3 font-bold text-slate-800 align-middle">${emp.personal?.apellidos || ''}, ${emp.personal?.nombres || ''}</td>
+                    <td class="p-3 text-slate-500 align-middle">${emp.id}</td>
+                    <td class="p-3 text-center align-middle font-black ${score===100?'text-green-600':score>=70?'text-brand-600':'text-red-500'}">${score} pts</td>
+                    <td class="p-3 text-center align-middle">
+                        ${hasDetails ? `<button onclick="viewGradedExam('${emp.id}', '${qId}')" class="bg-blue-50 text-blue-600 px-4 py-2 rounded-xl text-xs font-bold hover:bg-blue-100 transition-colors">Ver Respuestas</button>` : `<span class="text-xs text-slate-400">Sin detalles (Antiguo)</span>`}
+                    </td>
+                </tr>`;
+            }).join('');
+            lucide.createIcons();
+        };
+
+        window.viewGradedExam = (empId, quizId) => {
+            const emp = allEmployees.find(e => e.id === empId); const quiz = allQuizzes.find(q => q.id === quizId); if(!emp || !quiz) return;
+            const qData = emp.completedQuizzes[quizId]; if(typeof qData !== 'object' || !qData.answers) return;
+            
+            document.getElementById('graded-exam-subtitle').textContent = quiz.title;
+            document.getElementById('graded-exam-avatar').innerHTML = emp.personal?.fotoPerfil ? `<img src="${emp.personal.fotoPerfil}" class="w-full h-full object-cover">` : `<div class="w-full h-full flex items-center justify-center"><i data-lucide="user"></i></div>`;
+            document.getElementById('graded-exam-name').textContent = `${emp.personal?.apellidos || ''}, ${emp.personal?.nombres || ''}`;
+            document.getElementById('graded-exam-dni').textContent = emp.id;
+            document.getElementById('graded-exam-score').textContent = `${qData.score}/100`;
+
+            const qContainer = document.getElementById('graded-exam-questions');
+            qContainer.innerHTML = quiz.questions.map((q, idx) => {
+                const userAns = qData.answers[idx];
+                let isCorrect = false; let ansHtml = '';
+
+                if (q.type === 'text') {
+                    const uText = (userAns || '').toString().trim().toLowerCase();
+                    const cText = (q.textAnswer || '').toString().trim().toLowerCase();
+                    isCorrect = (uText === cText);
+                    ansHtml = `<div class="p-4 rounded-xl border-2 ${isCorrect ? 'bg-green-50 border-green-200 text-green-800' : 'bg-red-50 border-red-200 text-red-800'}">
+                        <p class="text-sm font-bold mb-1">Escribió:</p><p class="text-base">${userAns || '<i>Sin respuesta</i>'}</p>
+                        ${!isCorrect ? `<p class="text-xs font-bold mt-2 pt-2 border-t border-red-200 text-red-600">Respuesta Correcta: ${q.textAnswer}</p>` : ''}
+                    </div>`;
+                } else {
+                    isCorrect = parseInt(userAns) === parseInt(q.answer);
+                    ansHtml = q.options.map((opt, optIdx) => {
+                        let style = "bg-white border-slate-200 text-slate-500 opacity-60";
+                        if (optIdx === parseInt(q.answer)) style = "bg-green-100 border-green-400 text-green-900 font-bold shadow-sm"; // The correct one
+                        else if (optIdx === parseInt(userAns)) style = "bg-red-100 border-red-400 text-red-900 font-bold line-through"; // User chose wrong
+                        return `<div class="p-3 rounded-xl border-2 ${style}">${opt}</div>`;
+                    }).join('');
+                    ansHtml = `<div class="space-y-2">${ansHtml}</div>`;
+                }
+
+                return `<div class="mb-6 pb-6 border-b border-slate-100">
+                    <h4 class="font-bold text-slate-800 mb-4 flex gap-2"><span class="${isCorrect ? 'text-green-500' : 'text-red-500'}">${isCorrect ? '✓' : '✗'}</span> ${idx+1}. ${q.q}</h4>
+                    ${ansHtml}
+                </div>`;
+            }).join('');
+
+            document.getElementById('admin-graded-exam-modal').classList.remove('hidden-view');
+            lucide.createIcons();
+        };
+
+        window.closeGradedExamModal = () => document.getElementById('admin-graded-exam-modal').classList.add('hidden-view');
+
+        // VISOR DNI / FICHA ADMIN
         window.viewAdminDni = (id) => { const emp = allEmployees.find(e => e.id === id); if(emp && emp.personal?.dniFoto) { document.getElementById('admin-dni-img').src = emp.personal.dniFoto; document.getElementById('admin-dni-modal').classList.remove('hidden-view'); } };
         window.toggleEmployeeStatus = async (id, current) => { if(!confirm(`¿${current ? "Deshabilitar" : "Habilitar"} a este trabajador?`)) return; try { await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'employees', id), { isActive: !current }); showNotification("Estado actualizado"); loadAllEmployees(); } catch(e){} };
         window.deleteEmployee = async (id) => { if(!confirm("⚠️ ¿ELIMINAR a este trabajador definitivamente?")) return; try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'employees', id)); showNotification("Eliminado"); loadAllEmployees(); } catch(e){} };
         
-        window.viewEmployeeData = (id) => {
-            const emp = allEmployees.find(e => e.id === id); if(!emp) return;
-            const p = emp.personal || {}, em = emp.emergencia || {}, con = emp.conyuge || {}, hijos = emp.hijos || [];
-            document.getElementById('ficha-foto').innerHTML = p.fotoPerfil ? `<img src="${p.fotoPerfil}" class="w-full h-full object-cover">` : 'Sin foto';
-            const s = (i,v) => document.getElementById(i).innerText = v || '-';
-            s('ficha-nombre-completo', `${p.apellidos||''}, ${p.nombres||''}`); s('ficha-dni', emp.id); s('ficha-fnac', p.fechaNacimiento); s('ficha-edad', p.edad);
-            s('ficha-domicilio', p.domicilio); s('ficha-distrito', p.distrito); s('ficha-provdep', `${p.provincia||''} / ${p.departamento||''}`); s('ficha-celular', p.celular); s('ficha-correo', p.correo);
-            s('ficha-ecivil', p.estadoCivil); s('ficha-nacionalidad', p.nacionalidad); s('ficha-vivienda', p.condicion); s('ficha-pension', p.pension); s('ficha-instruccion', p.gradoInstruccion); s('ficha-ocupacion', p.ocupacion);
-            s('ficha-em-nombre', em.contacto); s('ficha-em-parentesco', em.parentesco); s('ficha-em-domicilio', em.domicilio); s('ficha-em-celular', em.celular);
-            s('ficha-con-nombre', con.nombres); s('ficha-con-dni', con.dni); s('ficha-con-edad', con.edad);
-            document.getElementById('ficha-hijos-list').innerHTML = hijos.length === 0 ? '<p>No registra.</p>' : `<table class="w-full border-collapse border border-slate-300"><tr class="bg-slate-100"><th class="border border-slate-300 p-1">Nombres</th><th class="border border-slate-300 p-1">DNI</th><th class="border border-slate-300 p-1">F.Nac</th><th class="border border-slate-300 p-1">Edad</th></tr>${hijos.map(h => `<tr><td class="border border-slate-300 p-1 uppercase">${h.nombres}</td><td class="border border-slate-300 p-1 text-center">${h.dni}</td><td class="border border-slate-300 p-1 text-center">${h.fechaNacimiento}</td><td class="border border-slate-300 p-1 text-center">${h.edad}</td></tr>`).join('')}</table>`;
-            document.getElementById('admin-employee-modal').classList.remove('hidden-view');
-        };
+        window.viewEmployeeData = (id) => { const emp = allEmployees.find(e => e.id === id); if(!emp) return; const p = emp.personal || {}, em = emp.emergencia || {}, con = emp.conyuge || {}, hijos = emp.hijos || []; document.getElementById('ficha-foto').innerHTML = p.fotoPerfil ? `<img src="${p.fotoPerfil}" class="w-full h-full object-cover">` : 'Sin foto'; const s = (i,v) => document.getElementById(i).innerText = v || '-'; s('ficha-nombre-completo', `${p.apellidos||''}, ${p.nombres||''}`); s('ficha-dni', emp.id); s('ficha-fnac', p.fechaNacimiento); s('ficha-edad', p.edad); s('ficha-domicilio', p.domicilio); s('ficha-distrito', p.distrito); s('ficha-provdep', `${p.provincia||''} / ${p.departamento||''}`); s('ficha-celular', p.celular); s('ficha-correo', p.correo); s('ficha-ecivil', p.estadoCivil); s('ficha-nacionalidad', p.nacionalidad); s('ficha-vivienda', p.condicion); s('ficha-pension', p.pension); s('ficha-instruccion', p.gradoInstruccion); s('ficha-ocupacion', p.ocupacion); s('ficha-em-nombre', em.contacto); s('ficha-em-parentesco', em.parentesco); s('ficha-em-domicilio', em.domicilio); s('ficha-em-celular', em.celular); s('ficha-con-nombre', con.nombres); s('ficha-con-dni', con.dni); s('ficha-con-edad', con.edad); document.getElementById('ficha-hijos-list').innerHTML = hijos.length === 0 ? '<p>No registra.</p>' : `<table class="w-full border-collapse border border-slate-300"><tr class="bg-slate-100"><th class="border border-slate-300 p-1">Nombres</th><th class="border border-slate-300 p-1">DNI</th><th class="border border-slate-300 p-1">F.Nac</th><th class="border border-slate-300 p-1">Edad</th></tr>${hijos.map(h => `<tr><td class="border border-slate-300 p-1 uppercase">${h.nombres}</td><td class="border border-slate-300 p-1 text-center">${h.dni}</td><td class="border border-slate-300 p-1 text-center">${h.fechaNacimiento}</td><td class="border border-slate-300 p-1 text-center">${h.edad}</td></tr>`).join('')}</table>`; document.getElementById('admin-employee-modal').classList.remove('hidden-view'); };
         window.closeEmployeeModal = () => document.getElementById('admin-employee-modal').classList.add('hidden-view');
-
     </script>
 </body>
 </html>
